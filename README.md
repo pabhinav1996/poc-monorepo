@@ -132,18 +132,6 @@ npx nx build server
 
 ---
 
-## 🧠 Engineering Highlights
-
-This project specifically targets high code quality standards:
-
-- **Signals Adoption**: Extensive use of Angular Signals (`computed`, `signal`, `input`) for reactive state.
-- **No "Magic" Strings**: Content extracted to constant files (`guide.constants.ts`).
-- **Zero Inline Styles**: Strict adherence to Tailwind CSS classes; no `style="..."` attributes in templates.
-- **Declarative vs. Imperative**: "Wall of Logic" refactored into clean, data-driven configurations.
-- **Type Safety**: Elimination of `any` types in favor of strict interfaces.
-
----
-
 ## 🧪 Testing
 
 Run unit tests via Jest:
