@@ -1,0 +1,173 @@
+
+// Actually, let's copy the needed variables or rely on Tailwind checks.
+// The SCSS uses $color-primary-purple etc. I should ideally use the tailwind tokens/classes, but to be safe and avoid regression, I'll copy the variables or import them.
+// Since I can't easily import from operations.scss without circular dep or path issues, I will redefine the few variables needed locally or replace them with direct values/tokens.
+
+$color-primary-purple: #4e2683;
+$color-secondary-gray: #858d94;
+
+// ===== Advance Filters Panel Styling =====
+.advance-filters-panel {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.advance-filter-field {
+  margin-bottom: 0;
+}
+
+// Range Input Slider Styling
+.advance-filter-range-input {
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: $color-primary-purple;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    transition: transform 0.15s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: $color-primary-purple;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+    transition: transform 0.15s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    background: transparent;
+    height: 16px;
+  }
+
+  &::-moz-range-track {
+    background: transparent;
+    height: 16px;
+  }
+}
+
+// Score Range Dual Slider - Pointer events for overlapping sliders
+.score-range-slider {
+  .score-min-input {
+    pointer-events: none;
+    z-index: 1;
+
+    &::-webkit-slider-thumb {
+      pointer-events: auto;
+      z-index: 10;
+    }
+
+    &::-moz-range-thumb {
+      pointer-events: auto;
+      z-index: 10;
+    }
+  }
+
+  .score-max-input {
+    pointer-events: none;
+    z-index: 2;
+
+    &::-webkit-slider-thumb {
+      pointer-events: auto;
+      z-index: 10;
+    }
+
+    &::-moz-range-thumb {
+      pointer-events: auto;
+      z-index: 10;
+    }
+  }
+}
+
+// Select placeholder styling - Figma: #B4BABF for placeholder text
+// Border: 1px on top/sides, 2px on bottom per Figma border-[1px_1px_2px]
+.advance-filter-select {
+  color: #605e5c;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  border-width: 1px 1px 2px 1px !important; // 2px bottom border
+
+  // When no value is selected (showing placeholder)
+  &:has(option:first-child:checked) {
+    color: #b4babf;
+  }
+
+  option {
+    color: #605e5c;
+    font-weight: 400;
+  }
+
+  option[value=''] {
+    color: #b4babf;
+  }
+}
+
+// Apply placeholder color styling via CSS when empty value selected
+select.advance-filter-select option:disabled,
+select.advance-filter-select option[value=''] {
+  color: #b4babf;
+}
+
+// Textarea and input border styling - Figma: 1px top/sides, 2px bottom
+.advance-filters-panel {
+  textarea,
+  input[type='text'],
+  select {
+    border-width: 1px 1px 2px 1px !important;
+  }
+
+  // Date input styling - Figma: 152px width, 32px height
+  input[type='date'] {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    border-width: 1px 1px 2px 1px !important;
+    width: 200px; // Larger width per Figma
+
+    &::-webkit-datetime-edit-fields-wrapper {
+      color: #605e5c;
+    }
+
+    &::-webkit-datetime-edit-text {
+      color: #605e5c;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 0.7;
+      width: 16px;
+      height: 16px;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    // Placeholder styling when no date selected
+    &:not(:valid),
+    &[value=''] {
+      color: #b4babf;
+    }
+  }
+}

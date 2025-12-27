@@ -8,7 +8,26 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: '#4e2683',
+          hover: '#3B2E58', // implicit hover or darker shade
+        },
+        danger: '#cc333d',
+        warning: '#e68217',
+        success: '#60ad25',
+        neutral: {
+          light: '#605E5C', // Standard text
+          dark: '#323130',  // Headers
+          border: '#d2d0ce', // Borders
+        }
+      },
+      fontFamily: {
+        opensans: ['"Open Sans"', 'sans-serif'],
+        roboto: ['"Roboto"', 'sans-serif'],
+      }
+    },
   },
   plugins: [],
 };

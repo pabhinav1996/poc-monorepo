@@ -1,38 +1,36 @@
 <div class="h-full flex flex-col gap-4 overflow-auto">
   <!-- Header -->
   <div class="flex justify-between items-center">
-    <h1 class="font-semibold text-[#4e2683]" style="font-family: 'Open Sans', sans-serif; font-size: 24px; line-height: 32px;">Operations / My Metrics</h1>
+    <h1 class="font-semibold text-primary font-opensans text-[24px] leading-[32px]">Operations / My Metrics</h1>
     <button (click)="openGuide()" class="flex items-center gap-[8px] px-[8px] py-[12px] hover:bg-gray-50 rounded transition-colors">
       <!-- Guide icon from Figma - speech bubble with info -->
-      <svg class="w-4 h-4 shrink-0" viewBox="0 0 16 16" fill="none">
-        <path d="M1.60781 0C0.734328 0 0.0078125 0.723987 0.0078125 1.59844L0 16L3.2 12.8H14.4C15.2745 12.8 16 12.0745 16 11.2V1.6C16 0.72555 15.2745 0 14.4 0H1.60781ZM1.60781 1.6H14.4V11.2H2.5375L1.60313 12.1344L1.60781 1.6ZM7.2 3.2V4.8H8.8V3.2H7.2ZM7.2 6.4V9.6H8.8V6.4H7.2Z" fill="#4E2683"/>
+      <svg class="w-4 h-4 shrink-0 text-primary" viewBox="0 0 16 16" fill="none">
+        <path d="M1.60781 0C0.734328 0 0.0078125 0.723987 0.0078125 1.59844L0 16L3.2 12.8H14.4C15.2745 12.8 16 12.0745 16 11.2V1.6C16 0.72555 15.2745 0 14.4 0H1.60781ZM1.60781 1.6H14.4V11.2H2.5375L1.60313 12.1344L1.60781 1.6ZM7.2 3.2V4.8H8.8V3.2H7.2ZM7.2 6.4V9.6H8.8V6.4H7.2Z" fill="currentColor"/>
       </svg>
-      <span class="text-[14px] font-semibold text-[#4e2683] leading-[20px]" style="font-family: 'Open Sans', sans-serif;">Guide</span>
+      <span class="text-[14px] font-semibold text-primary leading-[20px] font-opensans">Guide</span>
     </button>
   </div>
 
   <!-- Hero Banner with Arrow Shape - Matching Figma layout exactly -->
   <div class="relative rounded-[8px] overflow-hidden h-[256px] -mt-2">
     <!-- Background Image (positioned at right, covering ~56% of container like Figma's 708px/1255px) -->
-    <div class="absolute inset-y-0 right-0 rounded-r-[8px]" style="width: 56.4%;">
+    <div class="absolute inset-y-0 right-0 rounded-r-[8px] w-[56.4%]">
       <img src="/euro-bills.jpg" alt="" class="absolute inset-0 w-full h-full object-cover object-left rounded-r-[8px]" />
     </div>
     <!-- Dark overlay (starts at ~51% from left matching Figma's 641px/1255px) -->
-    <div class="absolute inset-y-0 right-0 bg-[rgba(0,57,36,0.2)] rounded-r-[8px]" style="width: 49%;"></div>
+    <div class="absolute inset-y-0 right-0 bg-[rgba(0,57,36,0.2)] rounded-r-[8px] w-[49%]"></div>
     <!-- Green Arrow Shape (63% width matching Figma's 791px/1255px) -->
-    <div class="absolute h-full left-0 top-0" style="width: 63%;">
+    <div class="absolute h-full left-0 top-0 w-[63%]">
       <svg class="w-full h-full" viewBox="0 0 791 256" preserveAspectRatio="none">
         <path d="M0 0H741L791 128L741 256H0V0Z" fill="#003924"/>
       </svg>
     </div>
     <!-- Title - positioned at left-32px top-32px -->
-    <p class="absolute text-[28px] font-normal leading-[36px] left-[32px] top-[32px] text-white whitespace-nowrap" 
-       style="font-family: 'Open Sans', sans-serif;">
+    <p class="absolute text-[28px] font-normal leading-[36px] left-[32px] top-[32px] text-white whitespace-nowrap font-opensans">
       Lorem ipsum nisl erat
     </p>
     <!-- Body text - max-width 622px per Figma -->
-    <div class="absolute text-[16px] font-normal leading-[22px] left-[32px] top-[92px] text-white"
-         style="font-family: 'Open Sans', sans-serif; width: calc(63% - 64px); max-width: 622px;">
+    <div class="absolute text-[16px] font-normal leading-[22px] left-[32px] top-[92px] text-white font-opensans w-[calc(63%-64px)] max-w-[622px]">
       <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mi dolor at felis donec tellus. Pharetra, suspendisse malesuada viverra pellentesque ac ornare. Cras nulla id vestibulum molestie tristique. Ullamcorper eu massa ultricies morbi laoreet cras id. Pulvinar feugiat donec ultricies tortor vulputate dui in.</p>
       <p class="mb-0">&nbsp;</p>
       <p>Cras nulla id vestibulum molestie tristique. Ullamcorper eu massa ultricies.</p>
@@ -41,61 +39,53 @@
 
   <!-- As Of Date -->
   <div class="flex flex-col gap-1">
-    <span class="text-sm text-[#605E5C]">As Of Date</span>
+    <span class="text-sm text-neutral-light">As Of Date</span>
     <div class="relative">
-      <input type="date" value="2025-11-20" 
-             class="border border-[#8A8886] rounded px-3 py-1.5 text-sm w-[300px] bg-white">
+      <input type="date" value="2025-11-20"
+        class="border border-[#8A8886] rounded px-3 py-1.5 text-sm w-[300px] bg-white">
     </div>
   </div>
 
   <!-- Metric Cards Grid - equal width cards that fill container -->
   <div class="flex gap-[16px]">
-    <div *ngFor="let card of cards$ | async" 
-         class="flex-1 h-[115px] bg-white border border-[#d2d0ce] rounded-lg px-4 py-3 shadow-[0px_3.2px_7.2px_0px_rgba(0,0,0,0.13),0px_0.6px_1.8px_0px_rgba(0,0,0,0.1)] flex flex-col justify-between">
-      <div class="flex flex-col gap-2">
-        <div class="text-[16px] font-semibold leading-[16px]" style="font-family: 'Open Sans', sans-serif;"
-             [ngClass]="card.title === 'Escalated' ? 'text-[#a6212a]' : 'text-[#4e2683]'">{{ card.title }}</div>
-        <div class="text-[14px] text-[#5c6166] leading-[16px]" style="font-family: 'Open Sans', sans-serif;">{{ getCardDescription(card.title) }}</div>
-      </div>
-      <div class="flex flex-col items-end gap-2">
-        <div class="text-[16px] font-semibold leading-[16px]" style="font-family: 'Open Sans', sans-serif;"
-             [ngClass]="card.title === 'Escalated' ? 'text-[#a6212a]' : 'text-[#4e2683]'">{{ card.value }}</div>
-        <div class="text-[10px] text-[#5c6166] leading-[16px]" style="font-family: 'Open Sans', sans-serif;">{{ card.subtext }}</div>
-      </div>
-    </div>
+    @for (card of processedCards(); track card.id) {
+      <poc-stat-card [card]="card" class="flex-1 h-[115px]"></poc-stat-card>
+    }
   </div>
 
   <!-- Bottom Section: Instructions & Smart Identified Alert -->
   <div class="flex gap-4 flex-1 min-h-0">
     <!-- Instructions & Best Practices (flexible width) -->
-    <div class="flex-1 bg-white rounded-lg border border-[#d2d0ce] p-4 shadow-[0px_3.2px_7.2px_0px_rgba(0,0,0,0.13),0px_0.6px_1.8px_0px_rgba(0,0,0,0.1)]">
-      <h3 class="font-semibold text-xl text-[#4e2683] mb-4" style="font-family: 'Open Sans', sans-serif;">Instructions & Best Practices</h3>
-      <div class="text-sm text-[#605E5C] leading-relaxed">
+    <div class="flex-1 bg-white rounded-lg border border-neutral-border p-4 shadow-[0px_3.2px_7.2px_0px_rgba(0,0,0,0.13),0px_0.6px_1.8px_0px_rgba(0,0,0,0.1)]">
+      <h3 class="font-semibold text-xl text-primary mb-4 font-opensans">Instructions & Best Practices</h3>
+      <div class="text-sm text-neutral-light leading-relaxed">
         Content area for instructions and best practices documentation.
       </div>
     </div>
 
     <!-- Smart Identified Alert Table (Figma: 493px width) -->
-    <div class="w-[493px] shrink-0 bg-white rounded-lg border border-[#d2d0ce] p-4 flex flex-col shadow-[0px_3.2px_7.2px_0px_rgba(0,0,0,0.13),0px_0.6px_1.8px_0px_rgba(0,0,0,0.1)]">
-      <h3 class="font-semibold text-xl text-[#4e2683] mb-3" style="font-family: 'Open Sans', sans-serif;">Smart Identified Alert</h3>
+    <div class="w-[493px] shrink-0 bg-white rounded-lg border border-neutral-border p-4 flex flex-col shadow-[0px_3.2px_7.2px_0px_rgba(0,0,0,0.13),0px_0.6px_1.8px_0px_rgba(0,0,0,0.1)]">
+      <h3 class="font-semibold text-xl text-primary mb-3 font-opensans">Smart Identified Alert</h3>
       <div class="flex-1 overflow-auto">
         <!-- Table with Figma column positions: Alert-Id x=16(68px), Date x=269(64px), Score x=398(27px) -->
-        <table class="w-full text-[12px]" style="table-layout: fixed;">
+        <table class="w-full text-[12px] table-fixed">
           <thead>
             <tr class="border-b border-[#dcdee0]">
-              <th class="text-left py-2 text-[#323130] font-normal pl-4" style="font-family: 'Open Sans', sans-serif; width: 253px;">Alert Id</th>
-              <th class="text-left py-2 text-[#323130] font-normal" style="font-family: 'Open Sans', sans-serif; width: 129px;">Generated On</th>
-              <th class="text-center py-2 text-[#323130] font-normal" style="font-family: 'Open Sans', sans-serif; width: 79px;">Risk Score</th>
+              <th class="text-left py-2 text-neutral-dark font-normal pl-4 font-opensans w-[253px]">Alert Id</th>
+              <th class="text-left py-2 text-neutral-dark font-normal font-opensans w-[129px]">Generated On</th>
+              <th class="text-center py-2 text-neutral-dark font-normal font-opensans w-[79px]">Risk Score</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let alert of smartAlerts()" class="border-b border-[#E1DFDD] hover:bg-[#FAF9F8]">
-              <td class="py-2 text-[#4e2683] font-semibold pl-4 cursor-pointer hover:underline" style="font-family: 'Open Sans', sans-serif;">{{ alert.alertId }}</td>
-              <td class="py-2 text-[#17181a]" style="font-family: 'Open Sans', sans-serif;">{{ alert.generatedOn }}</td>
-              <td class="py-2 text-center">
-                <span class="text-[#cc333d] font-semibold" style="font-family: 'Open Sans', sans-serif;">{{ alert.riskScore }}</span>
-              </td>
-            </tr>
+            @for (alert of smartAlerts(); track alert) {
+              <tr class="border-b border-[#E1DFDD] hover:bg-gray-50">
+                <td class="py-2 text-primary font-semibold pl-4 cursor-pointer hover:underline font-opensans">{{ alert.alertId }}</td>
+                <td class="py-2 text-[#17181a] font-opensans">{{ alert.generatedOn }}</td>
+                <td class="py-2 text-center">
+                  <span class="text-danger font-semibold font-opensans">{{ alert.riskScore }}</span>
+                </td>
+              </tr>
+            }
           </tbody>
         </table>
       </div>

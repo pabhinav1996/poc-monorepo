@@ -122,23 +122,17 @@ div.ag-theme-quartz .ag-row.ag-row-even,
 div.ag-theme-quartz .ag-row.ag-row-odd,
 div.ag-theme-quartz .ag-root-wrapper .ag-row {
   border: none !important;
-  border-bottom: 0 solid transparent !important;
-  border-top: 0 solid transparent !important;
 }
 
 /* Remove cell borders */
 div.ag-theme-quartz div.ag-cell,
 div.ag-theme-quartz .ag-root-wrapper .ag-cell {
   border: none !important;
-  border-right: 0 solid transparent !important;
-  border-left: 0 solid transparent !important;
 }
 
-/* Remove header cell borders and vertical separators */
+/* Remove header cell borders */
 div.ag-theme-quartz div.ag-header-cell {
   border: none !important;
-  border-right: none !important;
-  border-left: none !important;
 }
 
 /* Hide the vertical separator line after each header cell */

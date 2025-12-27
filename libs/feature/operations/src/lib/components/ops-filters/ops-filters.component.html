@@ -1,0 +1,60 @@
+    <div>
+      <div class="flex flex-wrap gap-[16px] items-end">
+        <div class="w-[300px]">
+          <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light py-[5px]">Search By Alert Id</label>
+          <div class="relative">
+            <input type="text" [(ngModel)]="alertId" (ngModelChange)="onFilterChanged()" (keyup.enter)="onEnter()" placeholder="Placeholder"
+              class="w-full h-[32px] border border-[#B4BABF] border-b-2 rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] font-normal text-[#17181A] placeholder-[#B4BABF] focus:outline-none focus:ring-1 focus:ring-primary pr-[32px]">
+            <svg class="w-[24px] h-[24px] absolute right-[8px] top-[4px] text-neutral-light" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="w-[100px]">
+          <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light py-[5px]">Priority</label>
+          <select [(ngModel)]="priority" (ngModelChange)="onFilterChanged()" class="w-full h-[32px] border border-[#B4BABF] border-b-2 rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] font-normal focus:outline-none focus:ring-1 focus:ring-primary appearance-none bg-white bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M2.5%204.5L6%208L9.5%204.5%22%20stroke%3D%22%23605E5C%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_8px_center] bg-[length:12px_12px] pr-[28px]" [ngClass]="{'text-[#B4BABF]': !priority(), 'text-[#17181A]': priority()}">
+            <option value="">Select</option>
+            @for (p of filters()?.priorities; track p) {
+              <option [value]="p">{{p}}</option>
+            }
+          </select>
+        </div>
+        <div class="w-[180px]">
+          <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light py-[5px]">Type</label>
+          <select [(ngModel)]="type" (ngModelChange)="onFilterChanged()" class="w-full h-[32px] border border-[#B4BABF] border-b-2 rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] font-normal focus:outline-none focus:ring-1 focus:ring-primary appearance-none bg-white bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M2.5%204.5L6%208L9.5%204.5%22%20stroke%3D%22%23605E5C%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_8px_center] bg-[length:12px_12px] pr-[28px]" [ngClass]="{'text-[#B4BABF]': !type(), 'text-[#17181A]': type()}">
+            <option value="">Select</option>
+            @for (t of filters()?.types; track t) {
+              <option [value]="t">{{t}}</option>
+            }
+          </select>
+        </div>
+        <div class="w-[120px]">
+          <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light py-[5px]">Status</label>
+          <select [(ngModel)]="status" (ngModelChange)="onFilterChanged()" class="w-full h-[32px] border border-[#B4BABF] border-b-2 rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] font-normal focus:outline-none focus:ring-1 focus:ring-primary appearance-none bg-white bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M2.5%204.5L6%208L9.5%204.5%22%20stroke%3D%22%23605E5C%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_8px_center] bg-[length:12px_12px] pr-[28px]" [ngClass]="{'text-[#B4BABF]': !status(), 'text-[#17181A]': status()}">
+            <option value="">Select</option>
+            @for (s of filters()?.statuses; track s) {
+              <option [value]="s">{{s}}</option>
+            }
+          </select>
+        </div>
+        <div class="w-[120px]">
+          <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light py-[5px]">Risk Rating</label>
+          <select [(ngModel)]="riskRating" (ngModelChange)="onFilterChanged()" class="w-full h-[32px] border border-[#B4BABF] border-b-2 rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] font-normal focus:outline-none focus:ring-1 focus:ring-primary appearance-none bg-white bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2012%2012%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M2.5%204.5L6%208L9.5%204.5%22%20stroke%3D%22%23605E5C%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_8px_center] bg-[length:12px_12px] pr-[28px]" [ngClass]="{'text-[#B4BABF]': !riskRating(), 'text-[#17181A]': riskRating()}">
+            <option value="">Select</option>
+            @for (r of filters()?.riskRatings; track r) {
+              <option [value]="r">{{r}}</option>
+            }
+          </select>
+        </div>
+        <div class="w-[180px]">
+          <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light py-[5px]">Line of Business</label>
+          <input type="text" [(ngModel)]="lineOfBusiness" (ngModelChange)="onFilterChanged()" (keyup.enter)="onEnter()" placeholder="CIB"
+            class="w-full h-[32px] border border-[#B4BABF] border-b-2 rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] font-normal text-[#17181A] placeholder-[#B4BABF] focus:outline-none focus:ring-1 focus:ring-primary">
+        </div>
+        <div class="flex gap-[8px]">
+          <button (click)="apply.emit()" class="h-[32px] px-[16px] bg-primary text-white rounded-[4px] font-['Roboto'] font-semibold text-[14px] leading-[20px] hover:opacity-90 transition-opacity">Filter</button>
+          <button (click)="reset.emit()" class="h-[32px] px-[16px] bg-[#858D94] text-white rounded-[4px] font-['Roboto'] font-semibold text-[14px] leading-[20px] hover:opacity-90 transition-opacity">Reset</button>
+        </div>
+        <span class="text-[14px] font-semibold text-primary leading-[20px] ml-[16px] mb-[6px] font-opensans">Total {{totalRecords()}} record(s).</span>
+      </div>
+    </div>

@@ -8,13 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   private http = inject(HttpClient);
-  // Using relative path because proxy.conf.json forwards /api to http://localhost:3000
-  // But wait, the server routes are /api/dashboard-cards (from @Controller('') in main.ts global prefix 'api')
-  // So client should request /api/dashboard-cards.
-  // Proxy maps /api -> http://localhost:3000
-  // Request /api/dashboard-cards -> http://localhost:3000/api/dashboard-cards
-  // Server handles /api/dashboard-cards.
-  // CORRECT.
+  // Proxy configuration maps /api calls to the backend functionality
 
   getDashboardCards(): Observable<DashboardCard[]> {
     return this.http.get<DashboardCard[]>('/api/dashboard-cards');

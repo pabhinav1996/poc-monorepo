@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardCard } from '@poc/shared/util';
 
@@ -10,5 +10,6 @@ import { DashboardCard } from '@poc/shared/util';
   styleUrls: ['./stat-card.component.scss'],
 })
 export class StatCardComponent {
-  @Input() card!: DashboardCard;
+  card = input.required<DashboardCard & { description?: string; valueClass?: string }>();
+
 }

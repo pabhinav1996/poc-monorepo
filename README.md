@@ -1,96 +1,160 @@
-# PocMonorepo
+# POC Monorepo
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+> A production-grade, scalable Enterprise Application Proof-of-Concept.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+**POC Monorepo** demonstrates a modern, high-fidelity web application architecture designed for scalability, maintainability, and pixel-perfect UI implementation. It serves as a reference implementation for "Human-Grade" engineering standards, moving beyond typical AI-generated boilerplate.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+---
 
-## Run tasks
+## 🚀 Tech Stack
 
-To run tasks with Nx use:
+Built on a robust **Nx Monorepo** foundation, leveraging the latest in the Angular ecosystem.
 
-```sh
-npx nx <target> <project-name>
+### Core Frameworks
+
+- **Monorepo Tooling**: [Nx](https://nx.dev) (Extensible Dev Tools)
+- **Frontend**: Angular v18+ (Standalone Components, Signals, Control Flow)
+- **Backend**: NestJS (Modular Microservices Architecture)
+- **Language**: TypeScript 5.x
+
+### State & Data
+
+- **State Management**: NGRX (Store, Effects,Selectors)
+- **HTTP**: Angular `HttpClient` with Interceptors
+- **Data Grid**: AG Grid Enterprise (Custom Renderers, server-side data models)
+
+### Styling & Design
+
+- **Design System**: Tailwind CSS (Utility-first, Custom Tokenization)
+- **Fonts**: Open Sans, Roboto (Self-hosted/Optimized)
+- **Icons**: Optimized SVG Assets
+
+---
+
+## 🏗️ Architecture & Modules
+
+The project follows a strict **Domain-Driven Design (DDD)** approach within the Nx workspace structure.
+
+### 📱 Applications (`/apps`)
+
+| App          | Description                                                                            |
+| :----------- | :------------------------------------------------------------------------------------- |
+| **`client`** | Primary Angular frontend application. Consumers feature libraries to build the routes. |
+| **`server`** | NestJS backend API gateway and services.                                               |
+
+### 📚 Libraries (`/libs`)
+
+#### Feature Modules (`libs/feature/*`)
+
+Self-contained business domains that expose routable components.
+
+- **`dashboard`**: Analytics visualization, metric cards, and "Smart Alert" summaries.
+- **`operations`**: The core "Alert Queue" workload management interface.
+- **`details`**: Detailed Master-Detail views for specific alerts/items.
+
+#### Shared Modules (`libs/shared/*`)
+
+Reusable building blocks available to all features.
+
+- **`ui`**: "Dumb" presentation components (`stat-card`, `side-menu`, `guide-drawer`).
+- **`data-access`**: API services, NGRX stores, and generic data interfaces.
+- **`util`**: Helper functions, constants, and types.
+
+---
+
+## ✨ Key Features
+
+### 1. Interactive Dashboard
+
+A high-fidelity landing page featuring:
+
+- **Dynamic Stat Cards**: Data-driven cards with dynamic styling (colors/icons) based on risk thresholds.
+- **Smart Alerts**: Summary tables highlighting critical action items.
+
+### 2. Operational Alert Queue
+
+A high-performance Operations Grid powered by AG Grid:
+
+- **Pixel-Perfect Custom Cells**: Custom component renderers for Risk Ratings (Pills), Priority (Icons), and aligned numeric data.
+- **Smart Filtering**: A declarative filtering engine supporting complex rules (Ranges, Multi-selects).
+- **Responsive Layout**: Fluid column sizing that respects screen density.
+
+### 3. Advanced Filtering Engine
+
+- **Declarative Logic**: Replaced procedural "if-else" chains with a configuration-driven loop for maintainability.
+- **Control Flow**: Uses Angular's `@for` and `@switch` for highly performant DOM rendering.
+
+### 4. Integrated Help System
+
+- **Guide Drawer**: A collapsible side panel providing contextual help and best practices without leaving the workflow.
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js (LTS)
+- NPM or PNPM
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <repo-url>
+
+# Install dependencies
+npm install
 ```
 
-For example:
+### Development Server
 
-```sh
-npx nx build myproject
+**Run the Frontend:**
+
+```bash
+npx nx serve client
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+Navigate to `http://localhost:4200/`.
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+**Run the Backend:**
 
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
+```bash
+npx nx serve server
 ```
 
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
+### Build
 
-```sh
-# Generate an app
-npx nx g @nx/react:app demo
-
-# Generate a library
-npx nx g @nx/react:lib some-lib
+```bash
+npx nx build client
+npx nx build server
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+---
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## 🧠 Engineering Highlights
 
-## Set up CI!
+This project specifically targets high code quality standards:
 
-### Step 1
+- **Signals Adoption**: Extensive use of Angular Signals (`computed`, `signal`, `input`) for reactive state.
+- **No "Magic" Strings**: Content extracted to constant files (`guide.constants.ts`).
+- **Zero Inline Styles**: Strict adherence to Tailwind CSS classes; no `style="..."` attributes in templates.
+- **Declarative vs. Imperative**: "Wall of Logic" refactored into clean, data-driven configurations.
+- **Type Safety**: Elimination of `any` types in favor of strict interfaces.
 
-To connect to Nx Cloud, run the following command:
+---
 
-```sh
-npx nx connect
+## 🧪 Testing
+
+Run unit tests via Jest:
+
+```bash
+npx nx test client
+npx nx test libs/feature/operations
 ```
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+Run E2E tests via Playwright (if configured in `client-e2e`):
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-### Step 2
-
-Use the following command to configure a CI workflow for your workspace:
-
-```sh
-npx nx g ci-workflow
+```bash
+npx nx e2e client-e2e
 ```
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/intro#learn-nx?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)

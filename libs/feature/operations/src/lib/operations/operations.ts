@@ -5,12 +5,15 @@ import { ApiService, GridStore } from '@poc/shared/data-access';
 import { ColDef, GridApi, GridReadyEvent, RowDoubleClickedEvent } from 'ag-grid-community';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { OpsFiltersComponent } from '../components/ops-filters/ops-filters.component';
+import { OpsGridToolbarComponent } from '../components/ops-grid-toolbar/ops-grid-toolbar.component';
+import { OpsAdvancedFiltersComponent } from '../components/ops-advanced-filters/ops-advanced-filters.component';
 import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'poc-operations',
   standalone: true,
-  imports: [CommonModule, AgGridAngular, FormsModule, RouterModule],
+  imports: [CommonModule, AgGridAngular, FormsModule, RouterModule, OpsFiltersComponent, OpsGridToolbarComponent, OpsAdvancedFiltersComponent],
   templateUrl: './operations.html',
   styleUrl: './operations.scss',
   encapsulation: ViewEncapsulation.None
@@ -106,7 +109,7 @@ export class OperationsComponent {
       minWidth: 120,
       sortable: false,
       filter: false,
-      cellRenderer: (params: any) => `<span style="color: #37317A; font-family: Roboto, sans-serif; font-weight: 400; font-size: 14px; line-height: 32px;">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-[#4e2683] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
     { 
       field: 'daysLapsed', 
@@ -115,7 +118,7 @@ export class OperationsComponent {
       minWidth: 110,
       sortable: false,
       filter: false,
-      cellRenderer: (params: any) => `<span style="color: #37317A; font-family: Roboto, sans-serif; font-weight: 400; font-size: 14px; line-height: 32px;">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-[#37317A] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
     { 
       field: 'priority', 
@@ -133,7 +136,7 @@ export class OperationsComponent {
         };
         const color = colors[params.value] || '#8A8886';
         // 16x16px icon with 2px border-radius, 8px gap, text color #37317a
-        return `<div style="display: flex; align-items: center; gap: 8px;"><div style="width: 16px; height: 16px; border-radius: 2px; background-color: ${color}; flex-shrink: 0;"></div><span style="color: #37317a; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 14px;">${params.value}</span></div>`;
+        return `<div class="flex items-center gap-[8px]"><div class="w-[16px] h-[16px] rounded-[2px] shrink-0" style="background-color: ${color};"></div><span class="text-[#37317a] font-opensans font-semibold text-[14px]">${params.value}</span></div>`;
       }
     },
     { 
@@ -143,7 +146,7 @@ export class OperationsComponent {
       minWidth: 100,
       sortable: false,
       filter: false,
-      cellRenderer: (params: any) => `<span style="color: #37317A; font-family: Roboto, sans-serif; font-weight: 400; font-size: 14px; line-height: 32px;">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-[#37317A] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
     { 
       field: 'jurisdiction', 
@@ -170,7 +173,7 @@ export class OperationsComponent {
         };
         const bgColor = colors[params.value] || '#8A8886';
         // [Obs 6] Reduced height from 22px to 20px, font to 12px for better proportion
-        return `<div style="display: inline-flex; align-items: center; justify-content: center; width: 84px; height: 20px; border-radius: 2px; background-color: ${bgColor}; font-family: 'Open Sans', sans-serif; font-weight: 600; font-size: 12px; color: white;">${params.value}</div>`;
+        return `<div class="inline-flex items-center justify-center w-[84px] h-[20px] rounded-[2px] font-opensans font-semibold text-[12px] text-white" style="background-color: ${bgColor};">${params.value}</div>`;
       }
     },
     { 
@@ -181,7 +184,7 @@ export class OperationsComponent {
       sortable: false,
       filter: false,
       cellStyle: { textAlign: 'right', justifyContent: 'flex-end' },
-      cellRenderer: (params: any) => `<span style="color: #37317A; font-family: Roboto, sans-serif; font-weight: 400; font-size: 14px; line-height: 32px;">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-[#37317A] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
     { 
       field: 'clientName', 
@@ -201,7 +204,7 @@ export class OperationsComponent {
       sortable: false,
       filter: false,
       suppressSizeToFit: true,
-      cellRenderer: (params: any) => `<span style="color: #37317A; font-family: Roboto, sans-serif; font-weight: 400; font-size: 14px; line-height: 32px;">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-[#37317A] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
     { 
       field: 'lineOfBusiness', 
@@ -211,7 +214,7 @@ export class OperationsComponent {
       sortable: false,
       filter: false,
       suppressSizeToFit: true,
-      cellRenderer: (params: any) => `<span style="color: #37317A; font-family: Roboto, sans-serif; font-weight: 400; font-size: 14px; line-height: 32px;">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-[#37317A] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
   ];
 
@@ -299,116 +302,83 @@ export class OperationsComponent {
     const data = node.data;
     if (!data) return true;
 
-    // Basic filters
-    if (this.selectedAlertId && !data.id?.toLowerCase().includes(this.selectedAlertId.toLowerCase())) {
-      return false;
-    }
-    if (this.selectedPriority && data.priority !== this.selectedPriority) {
-      return false;
-    }
-    if (this.selectedType && data.type !== this.selectedType) {
-      return false;
-    }
-    if (this.selectedStatus && data.status !== this.selectedStatus) {
-      return false;
-    }
-    if (this.selectedRiskRating && data.riskRating !== this.selectedRiskRating) {
-      return false;
-    }
-    if (this.selectedLineOfBusiness && !data.lineOfBusiness?.toLowerCase().includes(this.selectedLineOfBusiness.toLowerCase())) {
+    // Helper to check standard matches
+    const checkMatch = (rowVal: string | undefined, filterVal: string, exact = true) => {
+      if (!filterVal) return true;
+      if (!rowVal) return false;
+      return exact ? rowVal === filterVal : rowVal.toLowerCase().includes(filterVal.toLowerCase());
+    };
+
+    // 1. Basic Filters (Declarative Configuration)
+    const basicConfig = [
+      { val: this.selectedAlertId, field: 'id', exact: false },
+      { val: this.selectedPriority, field: 'priority' },
+      { val: this.selectedType, field: 'type' },
+      { val: this.selectedStatus, field: 'status' },
+      { val: this.selectedRiskRating, field: 'riskRating' },
+      { val: this.selectedLineOfBusiness, field: 'lineOfBusiness', exact: false }
+    ];
+
+    if (basicConfig.some(c => !checkMatch(data[c.field], c.val, c.exact))) {
       return false;
     }
 
-    // Advance filters
-    if (this.advanceFilters.alertIds) {
-      const alertIds = this.advanceFilters.alertIds.split(',').map(id => id.trim().toLowerCase());
-      if (!alertIds.some(id => data.id?.toLowerCase().includes(id))) {
-        return false;
-      }
-    }
-    if (this.advanceFilters.type && data.type !== this.advanceFilters.type) {
-      return false;
-    }
-    if (this.advanceFilters.priority && data.priority !== this.advanceFilters.priority) {
-      return false;
-    }
-    if (this.advanceFilters.status && data.status !== this.advanceFilters.status) {
-      return false;
-    }
-    if (this.advanceFilters.jurisdiction && data.jurisdiction !== this.advanceFilters.jurisdiction) {
-      return false;
-    }
-    if (this.advanceFilters.riskRating && data.riskRating !== this.advanceFilters.riskRating) {
-      return false;
-    }
-    if (this.advanceFilters.lineOfBusiness && data.lineOfBusiness !== this.advanceFilters.lineOfBusiness) {
-      return false;
-    }
-    if (this.advanceFilters.clientNames) {
-      const clientNames = this.advanceFilters.clientNames.split('|').map(name => name.trim().toLowerCase());
-      if (!clientNames.some(name => data.clientName?.toLowerCase().includes(name))) {
-        return false;
-      }
-    }
-    // Score range filter
-    if (this.advanceFilters.scoreMin > 0 || this.advanceFilters.scoreMax < 300) {
-      const score = data.score ?? 0;
-      if (score < this.advanceFilters.scoreMin || score > this.advanceFilters.scoreMax) {
-        return false;
-      }
-    }
+    // 2. Advanced Filters
+    const af = this.advanceFilters;
     
-    // Rules applied filter
-    if (this.advanceFilters.rulesApplied > 0) {
-      const rulesApplied = data.rulesApplied ?? 0;
-      if (rulesApplied < this.advanceFilters.rulesApplied) {
-        return false;
-      }
+    // Multi-value checks (Split string)
+    if (af.alertIds) {
+      const ids = af.alertIds.split(',').map(id => id.trim().toLowerCase());
+      if (!ids.some(id => data.id?.toLowerCase().includes(id))) return false;
     }
-    
-    // Date range filter
-    if (this.advanceFilters.fromDate || this.advanceFilters.toDate) {
-      // Parse the row date from generatedOn field (format may vary: "MM/DD/YYYY" or "YYYY-MM-DD")
-      const rowDateStr = data.generatedOn;
-      if (rowDateStr) {
-        // Parse row date - try different formats
-        let rowDate: Date | null = null;
-        if (rowDateStr.includes('/')) {
-          // Format: MM/DD/YYYY or DD/MM/YYYY
-          const parts = rowDateStr.split('/');
-          if (parts.length === 3) {
-            // Assume MM/DD/YYYY format
-            rowDate = new Date(parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]));
-          }
-        } else {
-          // Format: YYYY-MM-DD (native date input format)
-          rowDate = new Date(rowDateStr);
-        }
-        
-        if (rowDate && !isNaN(rowDate.getTime())) {
-          // Normalize to date-only (remove time component)
-          const rowDateOnly = new Date(rowDate.getFullYear(), rowDate.getMonth(), rowDate.getDate());
-          
-          if (this.advanceFilters.fromDate) {
-            const fromDate = new Date(this.advanceFilters.fromDate);
-            const fromDateOnly = new Date(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate());
-            if (rowDateOnly < fromDateOnly) {
-              return false;
-            }
-          }
-          if (this.advanceFilters.toDate) {
-            const toDate = new Date(this.advanceFilters.toDate);
-            const toDateOnly = new Date(toDate.getFullYear(), toDate.getMonth(), toDate.getDate());
-            if (rowDateOnly > toDateOnly) {
-              return false;
-            }
-          }
-        }
+    if (af.clientNames) {
+      const names = af.clientNames.split('|').map(name => name.trim().toLowerCase());
+      if (!names.some(name => data.clientName?.toLowerCase().includes(name))) return false;
+    }
+
+    // Single value exact checks
+    const advConfig = [
+      { val: af.type, field: 'type' },
+      { val: af.priority, field: 'priority' },
+      { val: af.status, field: 'status' },
+      { val: af.jurisdiction, field: 'jurisdiction' },
+      { val: af.riskRating, field: 'riskRating' },
+      { val: af.lineOfBusiness, field: 'lineOfBusiness' },
+    ];
+
+    if (advConfig.some(c => !checkMatch(data[c.field], c.val))) return false;
+
+    // Numeric Ranges
+    const score = data.score ?? 0;
+    if ((af.scoreMin > 0 || af.scoreMax < 300) && (score < af.scoreMin || score > af.scoreMax)) return false;
+
+    const rules = data.rulesApplied ?? 0;
+    if (af.rulesApplied > 0 && rules < af.rulesApplied) return false;
+
+    // Date Range Logic
+    if (af.fromDate || af.toDate) {
+      const rowDate = this.parseDate(data.generatedOn);
+      if (rowDate) {
+        if (af.fromDate && rowDate < new Date(af.fromDate)) return false;
+        if (af.toDate && rowDate > new Date(af.toDate)) return false;
       }
     }
 
     return true;
   };
+
+  // Helper for date parsing to clean up main logic
+  private parseDate(dateStr: string | undefined): Date | null {
+    if (!dateStr) return null;
+    let d: Date;
+    if (dateStr.includes('/')) {
+        const [m, day, y] = dateStr.split('/');
+        d = new Date(+y, +m - 1, +day);
+    } else {
+        d = new Date(dateStr);
+    }
+    return isNaN(d.getTime()) ? null : new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  }
 
   resetFilters() {
     this.selectedAlertId = '';
