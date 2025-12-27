@@ -1,12 +1,10 @@
 
-// Actually, let's copy the needed variables or rely on Tailwind checks.
-// The SCSS uses $color-primary-purple etc. I should ideally use the tailwind tokens/classes, but to be safe and avoid regression, I'll copy the variables or import them.
-// Since I can't easily import from operations.scss without circular dep or path issues, I will redefine the few variables needed locally or replace them with direct values/tokens.
+
 
 $color-primary-purple: #4e2683;
 $color-secondary-gray: #858d94;
 
-// ===== Advance Filters Panel Styling =====
+
 .advance-filters-panel {
   font-family: 'Open Sans', sans-serif;
 }
@@ -15,7 +13,6 @@ $color-secondary-gray: #858d94;
   margin-bottom: 0;
 }
 
-// Range Input Slider Styling
 .advance-filter-range-input {
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -68,7 +65,6 @@ $color-secondary-gray: #858d94;
   }
 }
 
-// Score Range Dual Slider - Pointer events for overlapping sliders
 .score-range-slider {
   .score-min-input {
     pointer-events: none;
@@ -101,15 +97,14 @@ $color-secondary-gray: #858d94;
   }
 }
 
-// Select placeholder styling - Figma: #B4BABF for placeholder text
-// Border: 1px on top/sides, 2px on bottom per Figma border-[1px_1px_2px]
+
 .advance-filter-select {
   color: #605e5c;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  border-width: 1px 1px 2px 1px !important; // 2px bottom border
+  border-width: 1px 1px 2px 1px !important;
 
-  // When no value is selected (showing placeholder)
+
   &:has(option:first-child:checked) {
     color: #b4babf;
   }
@@ -124,13 +119,13 @@ $color-secondary-gray: #858d94;
   }
 }
 
-// Apply placeholder color styling via CSS when empty value selected
+
 select.advance-filter-select option:disabled,
 select.advance-filter-select option[value=''] {
   color: #b4babf;
 }
 
-// Textarea and input border styling - Figma: 1px top/sides, 2px bottom
+
 .advance-filters-panel {
   textarea,
   input[type='text'],
@@ -138,12 +133,12 @@ select.advance-filter-select option[value=''] {
     border-width: 1px 1px 2px 1px !important;
   }
 
-  // Date input styling - Figma: 152px width, 32px height
+
   input[type='date'] {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     border-width: 1px 1px 2px 1px !important;
-    width: 200px; // Larger width per Figma
+    width: 200px;
 
     &::-webkit-datetime-edit-fields-wrapper {
       color: #605e5c;
@@ -164,7 +159,7 @@ select.advance-filter-select option[value=''] {
       }
     }
 
-    // Placeholder styling when no date selected
+
     &:not(:valid),
     &[value=''] {
       color: #b4babf;

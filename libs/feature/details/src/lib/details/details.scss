@@ -1,8 +1,8 @@
-// Details Page Styling - Figma Screen 3 Aligned (Pixel-Perfect)
+
 @use 'sass:color';
 
-// ===== Figma Design Tokens =====
-// Colors
+
+
 $primary-purple: #4E2683;
 $theme-primary: #0078D4;
 $status-badge: #6F66CC;
@@ -12,7 +12,7 @@ $risk-low: #60AD25;
 $model-tag: #26A0BE;
 $risk-flag-tag: #26A0BE;
 
-// Text Colors
+
 $neutral-primary: #323130;
 $neutral-dark: #201F1E;
 $neutral-secondary: #605E5C;
@@ -22,7 +22,7 @@ $light-gray-text: #717171;
 $placeholder-text: #B4BABF;
 $text-filled: #17181A;
 
-// Backgrounds & Borders
+
 $input-border: #B4BABF;
 $input-border-dark: #8A8886;
 $border-dark: #8A8886;
@@ -32,15 +32,15 @@ $row-odd: #FFFFFF;
 $header-bg: #FAFAFA;
 $drawer-border: #E1DFDD;
 
-// Shadows (Figma Elevation)
+
 $elevation-depth-8: 0px 3.2px 7.2px rgba(0, 0, 0, 0.13),
                     0px 0.6px 1.8px rgba(0, 0, 0, 0.1);
 
-// Typography
+
 $font-family: 'Open Sans', sans-serif;
 $font-roboto: 'Roboto', sans-serif;
 
-// Issue #3: Background should be #FAFAFA (light gray), not pure white
+
 :host {
   display: block;
   height: 100%;
@@ -53,7 +53,7 @@ $font-roboto: 'Roboto', sans-serif;
   font-family: $font-family;
 }
 
-// ===== Header Section =====
+
 .header-section {
   display: flex;
   flex-direction: column;
@@ -65,7 +65,7 @@ $font-roboto: 'Roboto', sans-serif;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  padding: 8px 8px; // Issue #1: Reduced left padding to match Figma
+  padding: 8px 8px;
 }
 
 .header-left {
@@ -78,14 +78,14 @@ $font-roboto: 'Roboto', sans-serif;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 8px 8px 8px; // Issue #1 & #6: Reduced left/right padding
+  padding: 0 8px 8px 8px;
 }
 
-// Issue #1: Wrapper to properly position date info after back button area
+
 .date-info-wrapper {
   display: flex;
   align-items: center;
-  // Left margin = back button width (32px) + gap (8px) + title section left padding (8px)
+
   margin-left: 48px;
 }
 
@@ -150,21 +150,20 @@ $font-roboto: 'Roboto', sans-serif;
   &.risk-low { background-color: $risk-low; }
 }
 
-// Issue #1: Pipe separator per Figma node 1:1845
-// Container has #D4D4D4 background with 2px gap creating visible separator
+
 .date-info-section {
   display: flex;
   align-items: center;
-  gap: 2px; // 2px gap creates pipe separator effect
-  background-color: #D4D4D4; // Gray separator color
+  gap: 2px;
+  background-color: #D4D4D4;
 }
 
 .date-item {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 0 8px 0 4px; // pl:0/4px, pr:8px per Figma
-  background-color: $header-bg; // #FAFAFA background on each item
+  padding: 0 8px 0 4px;
+  background-color: $header-bg;
 }
 
 .date-text {
@@ -181,7 +180,7 @@ $font-roboto: 'Roboto', sans-serif;
   gap: 8px;
 }
 
-// Issue #2: Right side row2 for Hide Panel - needs to align with Next button
+
 .header-right-row2 {
   display: flex;
   align-items: center;
@@ -219,7 +218,7 @@ $font-roboto: 'Roboto', sans-serif;
   }
 }
 
-// Toggle using Figma SVG images
+
 .toggle-container {
   display: flex;
   align-items: center;
@@ -248,13 +247,13 @@ $font-roboto: 'Roboto', sans-serif;
   color: $primary-purple;
 }
 
-// ===== Models & Risk Flags Bar =====
+
 .models-risk-bar {
   display: flex;
   flex-direction: column;
   gap: 4px;
   padding: 8px;
-  margin: 16px 8px 8px 8px; // Issue #5: More gap above, less below
+  margin: 16px 8px 8px 8px;
   border: 1px solid $input-border;
   border-radius: 8px;
   background-color: white;
@@ -274,8 +273,7 @@ $font-roboto: 'Roboto', sans-serif;
   line-height: 20px;
   color: black;
   padding: 2px;
-  flex-shrink: 0; // Issue #4: Label doesn't shrink
-  // min-width removed - tags start right after colon
+  flex-shrink: 0;
 }
 
 .tag {
@@ -300,16 +298,15 @@ $font-roboto: 'Roboto', sans-serif;
   background-color: $risk-flag-tag;
 }
 
-// ===== Tab Bar - Issue #5: Proper spacing per Figma =====
 .tab-bar-wrapper {
-  padding: 0 8px; // Issue #1: Reduced padding
-  margin-top: 8px; // Issue #5: More gap between models/risk and tabs
+  padding: 0 8px;
+  margin-top: 8px;
 }
 
 .tab-bar {
   display: flex;
   align-items: flex-end;
-  gap: 8px; // 8px gap between tabs per Figma
+  gap: 8px;
 }
 
 .tab {
@@ -336,48 +333,42 @@ $font-roboto: 'Roboto', sans-serif;
   }
 }
 
-// Issue #4: Full-width border below tabs
 .tab-bar-border {
   width: 100%;
   height: 1px;
   background-color: $input-border;
 }
 
-// ===== Content Area - Issue #5: Reduced gap between tabs and content =====
 .content-area {
   flex: 1;
   display: flex;
   overflow: hidden;
-  background-color: $header-bg; // Same as page background
-  padding: 8px 8px 16px 8px; // Issue #1 & #5: Reduced top/side padding
+  background-color: $header-bg;
+  padding: 8px 8px 16px 8px;
 }
 
-// Issue #4 & #7: Main content styling with proper container per Figma
 .main-content {
   flex: 1;
-  display: flex; // Flex to contain disambiguation content + right panel side by side
+  display: flex;
   padding: 15px;
   overflow-y: auto;
-  background-color: white; // #FAFAFA per user request
-  border: 1px solid $grid-border; // #D2D0CE per Figma
-  border-radius: 8px; // rounded corners per Figma
-  box-shadow: $elevation-depth-8; // Figma shadow
+  background-color: white;
+  border: 1px solid $grid-border;
+  border-radius: 8px;
+  box-shadow: $elevation-depth-8;
   min-width: 0;
 }
 
-// ===== Disambiguation Content =====
-// Per Figma node 1:1963, left content area takes remaining width (total - 266px right panel)
 .disambiguation-content {
-  flex: 1; // Take remaining space
-  min-width: 0; // Allow shrinking
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 16px;
   overflow-y: auto;
-  padding-right: 16px; // Gap between content and right panel border
+  padding-right: 16px;
 }
 
-// Sub tabs per Figma node 1:1966
 .sub-tab-bar {
   display: flex;
   align-items: center;
@@ -438,7 +429,6 @@ $font-roboto: 'Roboto', sans-serif;
   padding: 5px 0;
 }
 
-// Issue #5: Dropdown styling - text color #5C6166 per Figma node 1:2074
 .dropdown {
   position: relative;
   flex: 1;
@@ -448,15 +438,15 @@ $font-roboto: 'Roboto', sans-serif;
     width: 100%;
     height: 32px;
     padding: 6px 28px 6px 8px;
-    border: 1px solid $input-border; // #B4BABF per Figma
-    border-bottom-width: 2px; // 2px bottom border per Figma
-    border-radius: 4px; // 4px per Figma dropdown
+    border: 1px solid $input-border;
+    border-bottom-width: 2px;
+    border-radius: 4px;
     background-color: white;
     font-family: $font-family;
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
-    color: $gray-text; // #5C6166 per Figma
+    color: $gray-text;
     appearance: none;
     cursor: pointer;
     
@@ -501,7 +491,6 @@ $font-roboto: 'Roboto', sans-serif;
   color: $primary-purple;
 }
 
-// ===== Entity Table =====
 .entity-table {
   border: none;
   border-radius: 0;
@@ -521,7 +510,7 @@ $font-roboto: 'Roboto', sans-serif;
     th {
       padding: 10px 16px;
       font-family: $font-family;
-      font-weight: 600; // Issue #2: Changed from 700 to 600 per Figma
+      font-weight: 600;
       font-size: 14px;
       line-height: 20px;
       color: $neutral-primary;
@@ -602,25 +591,23 @@ $font-roboto: 'Roboto', sans-serif;
   }
 }
 
-// Issue #6: Text field styling per Figma nodes 1:2066 and 1:2064
 .text-field {
   width: 100%;
   height: 32px;
   padding: 6px 8px;
-  border: 1px solid $input-border; // #B4BABF per Figma
-  border-bottom-width: 2px; // 2px bottom border per Figma
-  border-radius: 4px; // 4px per Figma
+  border: 1px solid $input-border;
+  border-bottom-width: 2px;
+  border-radius: 4px;
   background-color: white;
   font-family: $font-family;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-  color: $text-filled; // #17181A when filled per Figma node 1:2064
+  color: $text-filled;
   box-sizing: border-box;
   
-  // Issue #6: Placeholder text in #B4BABF per Figma node 1:2066
   &::placeholder {
-    color: $placeholder-text; // #B4BABF
+    color: $placeholder-text;
     font-weight: 400;
     font-style: normal;
   }
@@ -641,16 +628,13 @@ $font-roboto: 'Roboto', sans-serif;
   font-size: 14px;
 }
 
-// ===== Right Panel - Issue #2: Inside main-content per Figma node 1:1974 =====
-// Border is trimmed from top/bottom per Figma
 .right-panel {
-  width: 488px; // Figma exact width
+  width: 488px;
   flex-shrink: 0;
-  margin-left: 0; // No gap, border creates visual separation
-  margin-top: 8px; // Trim border from top
-  margin-bottom: 8px; // Trim border from bottom
-  background-color: transparent; // Same as container background
-  // Only left border per Figma: border-[0px_0px_0px_1px]
+  margin-left: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: transparent;
   border-left: 1px solid $input-border;
   display: flex;
   flex-direction: column;
@@ -664,12 +648,12 @@ $font-roboto: 'Roboto', sans-serif;
   align-items: center;
   justify-content: flex-start;
   padding: 0 16px;
-  padding-top: 252px; // Icon starts at 252px from top per Figma
+  padding-top: 252px;
   text-align: center;
 }
 
 .panel-icon {
-  margin-bottom: 16px; // Gap between icon and title
+  margin-bottom: 16px;
   
   img {
     width: 80px;
@@ -683,7 +667,7 @@ $font-roboto: 'Roboto', sans-serif;
   font-size: 24px;
   line-height: normal;
   color: $neutral-primary;
-  margin: 0 0 28px 0; // 28px gap to description per Figma (392-348-24 line height)
+  margin: 0 0 28px 0;
 }
 
 .panel-description {
@@ -691,7 +675,7 @@ $font-roboto: 'Roboto', sans-serif;
   font-size: 14px;
   line-height: 20px;
   color: $light-gray-text;
-  width: 266px; // Exact width per Figma
+  width: 266px;
   max-width: 266px;
   margin: 0;
   
@@ -704,7 +688,6 @@ $font-roboto: 'Roboto', sans-serif;
   }
 }
 
-// ===== Quick Guide Drawer =====
 .guide-overlay {
   position: fixed;
   inset: 0;

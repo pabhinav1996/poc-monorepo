@@ -1,24 +1,17 @@
 @if (isOpen) {
   <div class="fixed inset-0 z-50">
-    <!-- Backdrop -->
     <div class="absolute inset-0 bg-black/30" (click)="close.emit()"></div>
-    <!-- Side Drawer (right side) - Figma: 684px width, Depth64 shadow -->
     <div class="absolute right-0 top-0 bottom-0 w-[684px] bg-white shadow-[0px_4.8px_14.4px_0px_rgba(0,0,0,0.18),0px_25.6px_57.6px_0px_rgba(0,0,0,0.22)] flex flex-col">
-      <!-- Header - Figma: Nav-commands-container, height 44px, at y=18 (18px top padding) -->
       <div class="relative h-[44px] mt-[18px] px-[24px] pt-[8px]">
-        <!-- Close/Overflow Button - Figma: 44x44px at right-10px, vertically centered -->
         <button (click)="close.emit()"
           class="absolute right-[10px] top-0 w-[44px] h-[44px] flex items-center justify-center text-[#3B3A39] hover:bg-[#FAF9F8] rounded transition-colors">
           <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
             <path d="M8 8.707l3.646 3.647.708-.708L8.707 8l3.647-3.646-.708-.708L8 7.293 4.354 3.646l-.708.708L7.293 8l-3.647 3.646.708.708L8 8.707z"/>
           </svg>
         </button>
-        <!-- Panel Title - Figma: Open Sans SemiBold 20px, #4E2683 -->
         <h2 class="text-[20px] font-semibold text-[#4e2683] leading-[28px] font-opensans">{{ title }}</h2>
       </div>
-      <!-- Content - Figma: Frame 2784, positioned at x=24, y=70 (8px gap from header) -->
       <div class="flex-1 overflow-y-auto px-[24px] pt-[8px] pb-[24px]">
-        <!-- Content Box - Figma: 1px border #E1DFDD, 4px border-radius, 8px padding, full height -->
         <div class="border border-[#E1DFDD] rounded-[4px] p-[8px] text-[14px] text-[#323130] leading-[20px] h-full font-opensans">
           @for (step of guideSteps; track step; let last = $last) {
             <p class="mb-0"><span class="font-semibold">{{ step.title }}:</span> {{ step.content }}</p>
@@ -28,9 +21,7 @@
           }
         </div>
       </div>
-      <!-- Footer - Figma: Footer-container, height 64px, no border -->
       <div class="h-[64px] bg-white relative shrink-0">
-        <!-- Close Button - Figma: positioned at left:24px, top:20px, height 28px -->
         <button (click)="close.emit()"
           class="absolute left-[24px] top-[20px] h-[28px] px-[16px] bg-[#4e2683] text-white text-[14px] font-semibold rounded-[4px] hover:bg-[#3d1e68] transition-colors flex items-center justify-center font-roboto">
           Close

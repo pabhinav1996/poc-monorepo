@@ -1,10 +1,10 @@
 <div class="h-full flex flex-col gap-4">
-  <!-- Header -->
+
   <div>
     <h1 class="text-2xl font-semibold text-primary font-opensans">Operations / Alert Queue</h1>
   </div>
 
-  <!-- Filters Bar -->
+
   <poc-ops-filters
     [filters]="filters$ | async"
     [totalRecords]="totalRecords"
@@ -19,7 +19,7 @@
     (reset)="resetFilters()"
   ></poc-ops-filters>
 
-  <!-- AG Grid with Toolbar - Figma Frame 427322886 -->
+
   <div class="flex-1 overflow-hidden flex flex-col bg-white px-[16px] pt-[8px] pb-[16px] rounded-[8px] border border-neutral-border">
     <poc-ops-grid-toolbar
       (export)="null"
@@ -27,7 +27,7 @@
       (bulkAction)="null"
     ></poc-ops-grid-toolbar>
 
-    <!-- Grid - Figma: x=16, y=56 from outer frame -->
+
     <div class="flex-1 relative">
       <div class="absolute inset-0">
         <ag-grid-angular
@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<!-- Advance Filters Modal -->
+
 @if (showAdvanceFilters) {
   <poc-ops-advanced-filters
     [filters]="filters$ | async"

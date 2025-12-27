@@ -31,7 +31,7 @@ export class OperationsComponent {
     })
   );
 
-  // Filter Models
+
   selectedAlertId = '';
   selectedPriority = '';
   selectedType = '';
@@ -40,7 +40,7 @@ export class OperationsComponent {
   selectedLineOfBusiness = '';
   totalRecords = 0;
 
-  // Advance Filters
+
   showAdvanceFilters = false;
   advanceFilters = {
     alertIds: '',
@@ -58,7 +58,7 @@ export class OperationsComponent {
     clientNames: ''
   };
   
-  // Today's date for max date on calendar inputs (YYYY-MM-DD format)
+
   todayDate = new Date().toISOString().split('T')[0];
 
   defaultColDef: ColDef = {
@@ -85,7 +85,7 @@ export class OperationsComponent {
     { 
       field: 'id', 
       headerName: 'Alert Id', 
-      flex: 1, // [Obs 1] Responsive width
+      flex: 1,
       minWidth: 130,
       pinned: 'left',
       lockPinned: true,
@@ -105,7 +105,7 @@ export class OperationsComponent {
     { 
       field: 'generatedOn', 
       headerName: 'Generated On', 
-      flex: 1, // [Obs 1] Responsive width
+      flex: 1,
       minWidth: 120,
       sortable: false,
       filter: false,
@@ -114,7 +114,7 @@ export class OperationsComponent {
     { 
       field: 'daysLapsed', 
       headerName: 'Days Lapsed', 
-      flex: 1, // [Obs 1] Responsive width
+      flex: 1,
       minWidth: 110,
       sortable: false,
       filter: false,
@@ -128,21 +128,20 @@ export class OperationsComponent {
       sortable: false,
       filter: false,
       cellRenderer: (params: any) => {
-        // Figma colors: P1=#cc333d (red), P2=#cc660c (orange), P3=#f7a956 (yellow)
         const colors: {[key: string]: string} = {
           'P1': '#cc333d',
           'P2': '#cc660c',
           'P3': '#f7a956'
         };
         const color = colors[params.value] || '#8A8886';
-        // 16x16px icon with 2px border-radius, 8px gap, text color #37317a
+
         return `<div class="flex items-center gap-[8px]"><div class="w-[16px] h-[16px] rounded-[2px] shrink-0" style="background-color: ${color};"></div><span class="text-[#37317a] font-opensans font-semibold text-[14px]">${params.value}</span></div>`;
       }
     },
     { 
       field: 'status', 
       headerName: 'Status', 
-      flex: 1, // [Obs 1] Responsive width
+      flex: 1,
       minWidth: 100,
       sortable: false,
       filter: false,
@@ -172,7 +171,6 @@ export class OperationsComponent {
           'High': '#cc333d'
         };
         const bgColor = colors[params.value] || '#8A8886';
-        // [Obs 6] Reduced height from 22px to 20px, font to 12px for better proportion
         return `<div class="inline-flex items-center justify-center w-[84px] h-[20px] rounded-[2px] font-opensans font-semibold text-[12px] text-white" style="background-color: ${bgColor};">${params.value}</div>`;
       }
     },
@@ -189,13 +187,13 @@ export class OperationsComponent {
     { 
       field: 'clientName', 
       headerName: 'Client Name', 
-      flex: 1, // [Obs 1] Responsive width
+      flex: 1,
       minWidth: 130,
       sortable: false,
       filter: false,
       cellRenderer: (params: any) => `<span class="text-[#4e2683]">${params.value}</span>` 
     },
-    // These columns appear on horizontal scroll
+
     { 
       field: 'rulesApplied', 
       headerName: 'Rules Applied', 
@@ -209,7 +207,7 @@ export class OperationsComponent {
     { 
       field: 'lineOfBusiness', 
       headerName: 'Line Of Business', 
-      flex: 1, // [Obs 1] Responsive width (fills remaining space)
+      flex: 1,
       minWidth: 130,
       sortable: false,
       filter: false,
@@ -221,7 +219,6 @@ export class OperationsComponent {
   private gridApi!: GridApi;
   private allRowData: any[] = [];
 
-  // Row style function to remove borders and set alternate colors via JS
   getRowStyle = (params: any) => {
     const isEven = params.node.rowIndex % 2 === 0;
     return {
@@ -244,10 +241,9 @@ export class OperationsComponent {
   }
 
   onFilterChanged() {
-    // Trigger external filtering for real-time filter as user types
     if (this.gridApi) {
       this.gridApi.onFilterChanged();
-      // Update record count
+
       setTimeout(() => {
         this.totalRecords = this.gridApi.getDisplayedRowCount();
       }, 50);
@@ -257,18 +253,14 @@ export class OperationsComponent {
   applyFilters() {
     if (!this.gridApi) return;
     
-    // Use external filtering
     this.gridApi.onFilterChanged();
     
-    // Update record count after filter
     setTimeout(() => {
       this.totalRecords = this.gridApi.getDisplayedRowCount();
     }, 100);
   }
 
-  // AG Grid external filter callback
   isExternalFilterPresent = (): boolean => {
-    // Check if any filter has a non-default value
     const hasBasicFilter = !!(
       this.selectedAlertId ||
       this.selectedPriority ||
@@ -297,19 +289,16 @@ export class OperationsComponent {
     return hasBasicFilter || hasAdvanceFilter;
   };
 
-  // AG Grid external filter callback
   doesExternalFilterPass = (node: any): boolean => {
     const data = node.data;
     if (!data) return true;
 
-    // Helper to check standard matches
     const checkMatch = (rowVal: string | undefined, filterVal: string, exact = true) => {
       if (!filterVal) return true;
       if (!rowVal) return false;
       return exact ? rowVal === filterVal : rowVal.toLowerCase().includes(filterVal.toLowerCase());
     };
 
-    // 1. Basic Filters (Declarative Configuration)
     const basicConfig = [
       { val: this.selectedAlertId, field: 'id', exact: false },
       { val: this.selectedPriority, field: 'priority' },
@@ -323,10 +312,8 @@ export class OperationsComponent {
       return false;
     }
 
-    // 2. Advanced Filters
     const af = this.advanceFilters;
     
-    // Multi-value checks (Split string)
     if (af.alertIds) {
       const ids = af.alertIds.split(',').map(id => id.trim().toLowerCase());
       if (!ids.some(id => data.id?.toLowerCase().includes(id))) return false;
@@ -336,7 +323,6 @@ export class OperationsComponent {
       if (!names.some(name => data.clientName?.toLowerCase().includes(name))) return false;
     }
 
-    // Single value exact checks
     const advConfig = [
       { val: af.type, field: 'type' },
       { val: af.priority, field: 'priority' },
@@ -348,14 +334,12 @@ export class OperationsComponent {
 
     if (advConfig.some(c => !checkMatch(data[c.field], c.val))) return false;
 
-    // Numeric Ranges
     const score = data.score ?? 0;
     if ((af.scoreMin > 0 || af.scoreMax < 300) && (score < af.scoreMin || score > af.scoreMax)) return false;
 
     const rules = data.rulesApplied ?? 0;
     if (af.rulesApplied > 0 && rules < af.rulesApplied) return false;
 
-    // Date Range Logic
     if (af.fromDate || af.toDate) {
       const rowDate = this.parseDate(data.generatedOn);
       if (rowDate) {
@@ -367,7 +351,6 @@ export class OperationsComponent {
     return true;
   };
 
-  // Helper for date parsing to clean up main logic
   private parseDate(dateStr: string | undefined): Date | null {
     if (!dateStr) return null;
     let d: Date;
@@ -422,7 +405,6 @@ export class OperationsComponent {
       lineOfBusiness: '',
       clientNames: ''
     };
-    // Close the flyout and apply filters to refresh grid
     this.showAdvanceFilters = false;
     if (this.gridApi) {
       this.gridApi.onFilterChanged();

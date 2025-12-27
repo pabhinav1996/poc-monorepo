@@ -31,15 +31,12 @@ export class OpsAdvancedFiltersComponent {
   filters = input.required<FilterOptions | null>();
   todayDate = input<string>(new Date().toISOString().split('T')[0]);
   
-  // State Model
   state = model.required<AdvanceFiltersState>();
 
-  // Outputs
   close = output<void>();
   apply = output<void>();
   reset = output<void>();
 
-  // Configuration for the 4 adjacent dropdowns to reduce template repetition
   dropdownFields = computed(() => {
     const f = this.filters();
     return [

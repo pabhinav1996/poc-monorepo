@@ -23,27 +23,21 @@ export class DetailsComponent {
   private router = inject(Router);
   gridStore = inject(GridStore);
 
-  // Get current row data from store
   currentRow = computed(() => {
     const id = this.gridStore.selectedId();
     const rows = this.gridStore.rows();
     return rows.find(r => r.id === id) || null;
   });
 
-  // Tab state
   activeTab: 'overview' | 'disambiguation' | 'alertSummary' = 'disambiguation';
   activeSubTab: 'mainEntity' | 'transactionParties' = 'mainEntity';
 
-  // Panel visibility
   showPanel = true;
 
-  // Guide drawer
   isGuideOpen = false;
 
-  // Toggle states
   flagPartyPairIssue = false;
 
-  // Entity table data
   selectedEntityIndex = 0;
   entities: Entity[] = [
     { name: 'Lorem ipsum', identityType: 'LEI', identity: '' },
@@ -54,7 +48,6 @@ export class DetailsComponent {
   ];
 
   constructor() {
-    // Subscribe to route params to update store
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
@@ -69,23 +62,18 @@ export class DetailsComponent {
     }
   }
 
-  /**
-   * Parse DD/MM/YYYY format and return formatted date like 'Monday, September 07, 2025'
-   */
   formatDate(dateStr: string): string {
     if (!dateStr) return '';
     
-    // Parse DD/MM/YYYY format
     const parts = dateStr.split('/');
     if (parts.length !== 3) return dateStr;
     
     const day = parseInt(parts[0], 10);
-    const month = parseInt(parts[1], 10) - 1; // JS months are 0-indexed
+    const month = parseInt(parts[1], 10) - 1; 
     const year = parseInt(parts[2], 10);
     
     const date = new Date(year, month, day);
     
-    // Format as 'Monday, September 07, 2025'
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
       year: 'numeric',

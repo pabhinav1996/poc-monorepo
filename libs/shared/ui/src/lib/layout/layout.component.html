@@ -1,18 +1,13 @@
 <div class="h-screen flex flex-col bg-slate-100 overflow-hidden font-sans text-gray-800">
-  <!-- Top Bar -->
   <poc-top-bar class="shrink-0"></poc-top-bar>
 
-  <!-- Main Content Area -->
   <div class="flex-1 flex overflow-hidden relative">
-    <!-- Side Menu -->
     <poc-side-menu class="shrink-0 z-10" (collapsedChange)="onSidebarCollapsedChange($event)"></poc-side-menu>
 
-    <!-- Page Content -->
     <main class="flex-1 overflow-auto relative p-6">
        <router-outlet></router-outlet>
     </main>
 
-    <!-- Guide Drawer -->
     <poc-guide-drawer [isOpen]="isGuideOpen" (close)="isGuideOpen = false"></poc-guide-drawer>
   </div>
 </div>

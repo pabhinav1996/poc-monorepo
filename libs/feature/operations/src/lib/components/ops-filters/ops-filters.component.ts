@@ -13,7 +13,6 @@ export class OpsFiltersComponent {
   filters = input.required<FilterOptions | null>();
   totalRecords = input.required<number>();
 
-  // Two-way binding models
   alertId = model<string>('');
   priority = model<string>('');
   type = model<string>('');
@@ -21,7 +20,6 @@ export class OpsFiltersComponent {
   riskRating = model<string>('');
   lineOfBusiness = model<string>('');
 
-  // Events
   filterChange = output<void>();
   reset = output<void>();
   apply = output<void>();

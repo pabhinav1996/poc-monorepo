@@ -8,7 +8,6 @@ import { ApiService } from './api.service';
 export class DashboardStore {
   private api = inject(ApiService);
 
-  // Signal based state for dashboard
   readonly smartAlerts = signal<SmartAlert[]>([]);
   readonly loading = signal<boolean>(false);
 

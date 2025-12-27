@@ -17,10 +17,8 @@ export class DashboardComponent implements OnInit {
   private api = inject(ApiService);
   private dashboardStore = inject(DashboardStore);
 
-  // Convert Observable to Signal
   private cardsSignal = toSignal(this.api.getDashboardCards(), { initialValue: [] });
 
-  // Computed signal for processed cards (enriching data for view)
   processedCards = computed(() => {
     const cards = this.cardsSignal();
     return cards.map(card => ({

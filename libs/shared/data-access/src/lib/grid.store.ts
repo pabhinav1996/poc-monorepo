@@ -5,7 +5,6 @@ import { GridRow } from '@poc/shared/util';
   providedIn: 'root'
 })
 export class GridStore {
-  // Signal based key-value store or just generic store logic
   readonly rows = signal<GridRow[]>([]);
   readonly selectedId = signal<string | null>(null);
 

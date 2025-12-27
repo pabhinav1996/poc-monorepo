@@ -71,16 +71,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
 }
 
-/* You can add global styles to this file, and also import other style files */
-
-/* ===== AG Grid CSS Imports ===== */
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-quartz.css';
 
-/* ===== AG Grid Theme Variable Overrides ===== */
-/* Override AG Grid's CSS custom properties at the theme level */
 .ag-theme-quartz {
-  /* Completely disable all borders */
   --ag-borders: none;
   --ag-borders-critical: none;
   --ag-borders-secondary: none;
@@ -97,26 +91,20 @@ h1, h2, h3, h4, h5, h6 {
   --ag-header-column-resize-handle-color: transparent;
   --ag-pinned-column-border-width: 0;
   
-  /* Row styling */
   --ag-row-height: 32px;
   --ag-odd-row-background-color: #ffffff;
   --ag-row-hover-color: rgba(78, 38, 131, 0.04);
   --ag-selected-row-background-color: rgba(78, 38, 131, 0.08);
   
-  /* Header styling */
   --ag-header-height: 43px;
   --ag-header-background-color: #fafafa;
   --ag-header-foreground-color: #323130;
   
-  /* Font */
   --ag-font-family: 'Open Sans', sans-serif;
   --ag-font-size: 14px;
 }
 
-/* ===== AG Grid Style Overrides with Maximum Specificity ===== */
-/* Target specific elements with !important to override any inline styles */
 
-/* Remove row borders */
 div.ag-theme-quartz div.ag-row,
 div.ag-theme-quartz .ag-row.ag-row-even,
 div.ag-theme-quartz .ag-row.ag-row-odd,
@@ -124,18 +112,15 @@ div.ag-theme-quartz .ag-root-wrapper .ag-row {
   border: none !important;
 }
 
-/* Remove cell borders */
 div.ag-theme-quartz div.ag-cell,
 div.ag-theme-quartz .ag-root-wrapper .ag-cell {
   border: none !important;
 }
 
-/* Remove header cell borders */
 div.ag-theme-quartz div.ag-header-cell {
   border: none !important;
 }
 
-/* Hide the vertical separator line after each header cell */
 div.ag-theme-quartz .ag-header-cell::after,
 div.ag-theme-quartz .ag-header-group-cell::after {
   display: none !important;
@@ -144,7 +129,6 @@ div.ag-theme-quartz .ag-header-group-cell::after {
   opacity: 0 !important;
 }
 
-/* Hide resize handle AND its pseudo-element completely */
 div.ag-theme-quartz .ag-header-cell-resize,
 .ag-theme-quartz .ag-header-cell-resize {
   display: none !important;
@@ -165,13 +149,11 @@ div.ag-theme-quartz .ag-header-cell-resize::after,
   visibility: hidden !important;
 }
 
-/* Remove pinned column borders */
 div.ag-theme-quartz .ag-pinned-left-header,
 div.ag-theme-quartz .ag-pinned-left-cols-container {
   border-right: none !important;
 }
 
-/* Alternate row colors - force background */
 div.ag-theme-quartz .ag-row.ag-row-odd {
   background-color: #ffffff !important;
 }
@@ -180,7 +162,6 @@ div.ag-theme-quartz .ag-row.ag-row-even {
   background-color: #f7f5ff !important;
 }
 
-/* Header only border */
 div.ag-theme-quartz .ag-header {
   background-color: #fafafa !important;
   border: none !important;
@@ -191,19 +172,7 @@ div.ag-theme-quartz .ag-header-row {
   border: none !important;
 }
 
-/* Checkbox - Using default AG Grid styling */
-
-// =============================================================================
-// AG GRID OVERRIDES - OPERATIONS FEATURE (Figma Improvements)
-// =============================================================================
-
 body .ag-theme-quartz {
-  // CRITICAL: Overriding CSS Variables
-  // (Moved to :root for global effectiveness per recent verification)
-
-  // ---------------------------------------------------------------------------
-  // OBSERVATION 1: Outer Shell (Curved Radius, No Border)
-  // ---------------------------------------------------------------------------
   .ag-root-wrapper {
      border: none !important; 
      border-radius: 4px !important; 
@@ -211,17 +180,11 @@ body .ag-theme-quartz {
      background-color: #FAFAFA !important; 
   }
   
-  // ---------------------------------------------------------------------------
-  // OBSERVATION 3: Header Styling (Background)
-  // ---------------------------------------------------------------------------
   .ag-header {
     background-color: #FAFAFA !important;
     border-bottom: 1px solid #8A8886 !important;
   }
   
-  // ---------------------------------------------------------------------------
-  // OBSERVATION 2: Removing Vertical Resizer/Divider
-  // ---------------------------------------------------------------------------
   .ag-header-cell-resize::after,
   .ag-header-cell-resize {
       display: none !important;
@@ -231,7 +194,6 @@ body .ag-theme-quartz {
       background: transparent !important;
   }
   
-  // Specific targeting for Alert Id to be absolutely sure
   .ag-header-cell[col-id="id"] .ag-header-cell-resize,
   .ag-header-cell[col-id="id"] .ag-header-cell-resize::after,
   .ag-header-cell[col-id="id"] .ag-react-container ~ .ag-header-cell-resize {
@@ -245,12 +207,6 @@ body .ag-theme-quartz {
     box-shadow: none !important; 
     border-right: none !important;
   }
-
-  // ---------------------------------------------------------------------------
-  // OBSERVATION 4: Checkbox Styling - Aggressive Fix
-  // ---------------------------------------------------------------------------
-  // Quartz uses a wrapper + input + ::after/icon. 
-  // If variables fail, we force layout size.
   
   .ag-checkbox-input-wrapper {
     width: 20px !important;
@@ -258,9 +214,8 @@ body .ag-theme-quartz {
     min-width: 20px !important;
     min-height: 20px !important;
     line-height: 20px !important;
-    font-size: 20px !important; // Scales the internal icon
+    font-size: 20px !important;
     
-    // Explicitly target the inner input/icon generic classes
     &::after, 
     .ag-icon {
         font-size: 20px !important;
@@ -275,31 +230,17 @@ body .ag-theme-quartz {
     }
   }
   
-  // Fallback: If font-size doesn't scale it enough, use transform
-  // The default is 12px, so 20/12 = ~1.67
-  /* 
-  .ag-checkbox-input-wrapper {
-      transform: scale(1.6); 
-      transform-origin: center;
-  } 
-  */
-
-
-  // ---------------------------------------------------------------------------
-  // GENERAL CLEANUP (Cells, Rows)
-  // ---------------------------------------------------------------------------
   .ag-row {
-    border-bottom: none !important; // Remove row dividers if Figma doesn't have them
+    border-bottom: none !important;
   }
   
   .ag-cell {
     border: none !important;
-    line-height: 32px !important; // Vertically center text
+    line-height: 32px !important;
     display: flex;
     align-items: center;
   }
   
-  // Focused cell outline removal
   .ag-cell-focus {
     border: none !important;
     outline: none !important;

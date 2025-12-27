@@ -1,11 +1,11 @@
 @if (currentRow(); as data) {
   <div class="details-page">
-    <!-- Header Section - 2 Rows -->
+
     <div class="header-section">
-      <!-- Row 1: Back + ID + Badges (left) | Quick Guide + Navigation (right) -->
+
       <div class="header-row-1">
         <div class="header-left">
-          <!-- Back Button - 32x32px -->
+
           <button routerLink="/operations" class="back-btn">
             <img src="http://localhost:3845/assets/813cddbc7fdd9f5dbae833b466bcf79a4c1abc26.svg"
               alt="Back"
@@ -13,7 +13,7 @@
               height="32"
               onerror="this.style.display='none'">
           </button>
-          <!-- Title Section - aligned with back button -->
+
           <div class="title-section">
             <span class="alert-id">{{ data.id }}</span>
             <div class="badge status-badge">Open - L1</div>
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="header-right">
-          <!-- Quick Guide Button -->
+
           <button (click)="isGuideOpen = true" class="text-btn">
             <img src="http://localhost:3845/assets/8a0875cd6874069a640456380fa7bc41030b9ab8.svg"
               alt="Quick Guide"
@@ -32,7 +32,7 @@
               onerror="this.style.display='none'">
             <span>Quick Guide</span>
           </button>
-          <!-- Navigation Buttons -->
+
           <button (click)="go(gridStore.prevId())" [disabled]="!gridStore.prevId()" class="text-btn">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -47,11 +47,11 @@
           </button>
         </div>
       </div>
-      <!-- Row 2: Date Info (aligned with SAM) + Hide Panel (aligned with Next button) -->
+
       <div class="header-row-2">
-        <!-- Issue #1: Date info aligned with title (after back button gap) -->
+
         <div class="date-info-wrapper">
-          <!-- Pipe separator container with #D4D4D4 bg and 2px gap per Figma node 1:1845 -->
+
           <div class="date-info-section">
             <div class="date-item">
               <span class="date-text">Alert On: {{ formatDate(data.generatedOn) }}</span>
@@ -71,11 +71,11 @@
             </div>
           </div>
         </div>
-        <!-- Issue #2: Hide Panel Toggle - using CORRECT SVG from node 1:2086 -->
+
         <div class="header-right-row2">
           <div class="toggle-container">
             <div class="toggle-img-wrapper" (click)="showPanel = !showPanel">
-              <!-- Purple ON toggle: 741454ca6ae556cea8398ec4efa6e24616811e55.svg -->
+
               @if (showPanel) {
                 <img
                   src="http://localhost:3845/assets/741454ca6ae556cea8398ec4efa6e24616811e55.svg"
@@ -83,7 +83,7 @@
                   width="40"
                   height="20">
               }
-              <!-- Grey OFF toggle: 048125fe71527407a3cf1e1230ea6592f55b072b.svg -->
+
               @if (!showPanel) {
                 <img
                   src="http://localhost:3845/assets/048125fe71527407a3cf1e1230ea6592f55b072b.svg"
@@ -97,7 +97,7 @@
         </div>
       </div>
     </div>
-    <!-- Models & Risk Flags Bar -->
+
     <div class="models-risk-bar">
       <div class="models-row">
         <span class="section-label">Models :</span>
@@ -110,7 +110,7 @@
         <div class="tag risk-flag-tag">Opaque Structure</div>
       </div>
     </div>
-    <!-- Issue #4: Tabs with proper gap and styling per Figma node 1:1953 -->
+
     <div class="tab-bar-wrapper">
       <div class="tab-bar">
         <button (click)="activeTab = 'overview'"
@@ -134,14 +134,14 @@
       </div>
       <div class="tab-bar-border"></div>
     </div>
-    <!-- Issue #4: Content Area with proper gap - Grid has border, shadow, rounded corners per node 1:1963 -->
+
     <div class="content-area">
-      <!-- Main Content Section (grid container) -->
+
       <div class="main-content">
-        <!-- Disambiguation Tab Content -->
+
         @if (activeTab === 'disambiguation') {
           <div class="disambiguation-content">
-            <!-- Sub Tabs - Figma node 1:1966 -->
+
             <div class="sub-tab-bar">
               <button (click)="activeSubTab = 'mainEntity'"
                 class="sub-tab"
@@ -155,7 +155,7 @@
               </button>
               <div class="sub-tab-divider"></div>
             </div>
-            <!-- Main Entity Parent Section - Issue #5: Dropdown text color #5C6166 -->
+
             <div class="entity-parent-section">
               <div class="dropdown-section">
                 <label class="field-label">Main Entity Parent:</label>
@@ -172,7 +172,7 @@
               </div>
               <div class="flag-section">
                 <span class="flag-label">Flag Party pair quality issue.</span>
-                <!-- Flag toggle - same OFF SVG -->
+
                 <div class="toggle-img-wrapper" (click)="flagPartyPairIssue = !flagPartyPairIssue">
                   @if (flagPartyPairIssue) {
                     <img
@@ -191,7 +191,7 @@
                 </div>
               </div>
             </div>
-            <!-- Entity Table -->
+
             <div class="entity-table">
               <table>
                 <thead>
@@ -203,7 +203,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- Issue #6: First row has value, others have placeholder "Type in" -->
+
                   @for (entity of entities; track entity; let i = $index) {
                     <tr [class.even]="i % 2 === 0" [class.odd]="i % 2 === 1">
                       <td class="col-select">
@@ -229,7 +229,7 @@
                         </div>
                       </td>
                       <td class="col-identity">
-                        <!-- Issue #6: Placeholder "Type in" in #B4BABF, filled text in #17181A -->
+
                         <input type="text"
                           [(ngModel)]="entity.identity"
                           placeholder="Type in"
@@ -242,19 +242,19 @@
             </div>
           </div>
         }
-        <!-- Overview Tab Content -->
+
         @if (activeTab === 'overview') {
           <div class="placeholder-content">
             Overview content - Client: {{ data.clientName }}, Type: {{ data.type }}, Priority: {{ data.priority }}
           </div>
         }
-        <!-- Alert Summary Tab Content -->
+
         @if (activeTab === 'alertSummary') {
           <div class="placeholder-content">
             Alert Summary - Score: {{ data.score }}, Jurisdiction: {{ data.jurisdiction }}
           </div>
         }
-        <!-- Issue #2: Right Panel inside main-content per Figma node 1:1963 & 1:1974 -->
+
         @if (showPanel && activeTab === 'disambiguation') {
           <div class="right-panel">
             <div class="panel-content">
@@ -275,7 +275,7 @@
         }
       </div>
     </div>
-    <!-- Issue #3: Use shared guide-drawer component for better modularity -->
+
     <poc-guide-drawer [isOpen]="isGuideOpen" (close)="isGuideOpen = false"></poc-guide-drawer>
   </div>
 }

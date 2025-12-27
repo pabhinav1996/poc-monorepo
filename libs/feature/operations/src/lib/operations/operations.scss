@@ -1,7 +1,7 @@
 @import 'ag-grid-community/styles/ag-grid.css';
 @import 'ag-grid-community/styles/ag-theme-quartz.css';
 
-// ===== Figma Design Tokens =====
+
 $color-primary-purple: #4E2683;
 $color-secondary-gray: #858D94;
 $color-label-text: #5C6166;
@@ -23,9 +23,9 @@ $checkbox-border-radius: 2px;
   height: 100%;
 }
 
-// AG Grid Custom Styling - Complete reset to match Figma
+
 .ag-theme-quartz {
-  // Reset ALL possible border-related variables
+
   --ag-borders: none;
   --ag-borders-critical: none;
   --ag-borders-secondary: none;
@@ -42,38 +42,36 @@ $checkbox-border-radius: 2px;
   --ag-pinned-column-border-width: 0;
   --ag-secondary-border-color: transparent;
   
-  // Header - Figma specs
+
   --ag-header-background-color: #{$color-header-bg};
   --ag-header-foreground-color: #{$color-text-primary};
   --ag-header-height: #{$grid-header-height};
   
-  // Rows - Figma specs
+
   --ag-row-height: #{$grid-row-height};
   --ag-odd-row-background-color: #{$color-row-odd};
   
-  // Font
+
   --ag-font-family: 'Open Sans', sans-serif;
   --ag-font-size: 14px;
   
-  // Selection
+
   --ag-selected-row-background-color: rgba(78, 38, 131, 0.08);
   --ag-row-hover-color: rgba(78, 38, 131, 0.04);
   
-  // Checkbox - Figma specs: 20x20px, 2px radius, #858D94 border
+
   --ag-checkbox-checked-color: #{$color-primary-purple};
   --ag-checkbox-unchecked-color: transparent;
   --ag-checkbox-background-color: transparent;
   --ag-checkbox-border-color: #{$color-secondary-gray};
-  // Ensure we don't accidentally hide it with global border resets
+
   --ag-checkbox-border-width: 1px;
   --ag-checkbox-border-radius: 2px;
 }
 
-// Specific component overrides are now handled in the global styles.scss 
-// to ensure they properly override AG Grid's internal theme styles.
-// See: apps/client/src/styles.scss "AG GRID OVERRIDES"
 
-// Global override for any lingering borders (highest specificity)
+
+
 :host ::ng-deep {
   .ag-theme-quartz .ag-row,
   .ag-theme-quartz .ag-cell,

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   private http = inject(HttpClient);
-  // Proxy configuration maps /api calls to the backend functionality
+
 
   getDashboardCards(): Observable<DashboardCard[]> {
     return this.http.get<DashboardCard[]>('/api/dashboard-cards');

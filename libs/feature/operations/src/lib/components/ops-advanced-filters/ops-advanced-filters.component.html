@@ -1,10 +1,10 @@
 <div class="fixed inset-0 z-50 flex justify-end">
-    <!-- Backdrop -->
+
     <div class="absolute inset-0 bg-black/30 backdrop-blur-sm" (click)="close.emit()"></div>
 
-    <!-- Flyout Panel -->
+
     <div class="advance-filters-panel bg-white h-full w-[488px] shadow-[0px_4.8px_14.4px_0px_rgba(0,0,0,0.18),0px_25.6px_57.6px_0px_rgba(0,0,0,0.22)] flex flex-col relative">
-      <!-- Header - Figma: Nav-commands-container -->
+
       <div class="h-[52px] pt-[24px] px-[24px] flex justify-between items-start border-[#EDEBE9]">
         <h2 class="text-[20px] font-normal text-primary leading-[28px] font-opensans">Advance Filters</h2>
         <button (click)="close.emit()" class="w-[44px] h-[44px] flex items-center justify-center text-neutral-light hover:text-neutral-dark -mt-[8px] -mr-[12px]">
@@ -14,16 +14,13 @@
         </button>
       </div>
 
-      <!-- Scrollable Content -->
       <div class="flex-1 overflow-y-auto px-[24px] pt-0 pb-[20px]">
         <div class="flex flex-col gap-[8px]">
-          <!-- Alert Id -->
           <div class="advance-filter-field">
             <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Alert Id (Comma separated)</label>
             <textarea [(ngModel)]="state().alertIds" rows="3" placeholder="Enter comma separated Alert ID for advance filter."
             class="w-[440px] h-[64px] border border-[#B4BABF] rounded-[4px] px-[8px] py-[8px] text-[14px] font-['Open_Sans'] text-neutral-light placeholder-[#B4BABF] focus:outline-none focus:ring-1 focus:ring-primary resize-none"></textarea>
           </div>
-          <!-- Type -->
           <div class="advance-filter-field">
             <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Type</label>
             <div class="relative w-[300px]">
@@ -39,7 +36,6 @@
             </div>
           </div>
 
-          <!-- Date Range -->
           <div class="flex gap-[40px]">
             <div class="advance-filter-field w-[200px]">
               <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">From Generated Date</label>
@@ -57,12 +53,10 @@
             </div>
           </div>
 
-          <!-- Dynamic Dropdowns (Priority, Status, Jurisdiction, Risk Rating) -->
           @for (field of dropdownFields(); track field.key) {
             <div class="advance-filter-field">
               <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">{{ field.label }}</label>
               <div class="relative w-[300px]">
-                <!-- Note: Using $any() cast because generic model key access in strict template mode can be tricky -->
                 <select [(ngModel)]="$any(state())[field.key]"
                   class="advance-filter-select w-full h-[32px] border border-[#B4BABF] rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] text-neutral-light focus:outline-none focus:ring-1 focus:ring-primary appearance-none bg-white pr-[32px]">
                   <option value="" class="text-[#B4BABF]">Placeholder</option>
@@ -77,25 +71,20 @@
             </div>
           }
 
-          <!-- Score Range - Figma: Frame 427322915 -->
           <div class="advance-filter-field">
             <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Score Range</label>
             <div class="flex items-center gap-[8px] h-[36px] w-[358px]">
               <span class="text-[14px] font-normal text-neutral-light w-[24px] text-left shrink-0 font-opensans">{{state().scoreMin}}</span>
               <div class="score-range-slider flex-1 relative h-[16px]">
-                <!-- Track Background - Green (outside range) -->
                 <div class="absolute w-full h-[4px] bg-success rounded-full top-1/2 -translate-y-1/2"></div>
-                <!-- Active Track - Purple (selected range between min and max) -->
                 <div class="absolute h-[4px] bg-primary rounded-full top-1/2 -translate-y-1/2"
                   [style.left.%]="(state().scoreMin / 300) * 100"
                 [style.width.%]="((state().scoreMax - state().scoreMin) / 300) * 100"></div>
-                <!-- Min Thumb -->
                 <input type="range"
                   [(ngModel)]="state().scoreMin"
                   min="0" max="300"
                   (input)="onScoreMinChange(+$any($event.target).value)"
                   class="advance-filter-range-input score-min-input absolute w-full h-[16px] appearance-none bg-transparent cursor-pointer">
-                <!-- Max Thumb -->
                 <input type="range"
                   [(ngModel)]="state().scoreMax"
                   min="0" max="300"
@@ -106,14 +95,11 @@
             </div>
           </div>
 
-          <!-- Rules Applied - Figma: Frame 427322916 -->
           <div class="advance-filter-field">
             <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center"># Rules Applied</label>
             <div class="flex items-center gap-[8px] h-[28px] w-[358px]">
               <div class="flex-1 relative h-[16px]">
-                <!-- Track Background -->
                 <div class="absolute w-full h-[4px] bg-[#E1DFDD] rounded-full top-1/2 -translate-y-1/2"></div>
-                <!-- Active Track - Green -->
                 <div class="absolute h-[4px] bg-success rounded-full top-1/2 -translate-y-1/2"
                 [style.width.%]="(state().rulesApplied / 20) * 100"></div>
                 <input type="range"
@@ -125,7 +111,6 @@
             </div>
           </div>
 
-          <!-- Line of Business -->
           <div class="advance-filter-field">
             <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Line of Business</label>
             <div class="relative w-[300px]">
@@ -141,7 +126,6 @@
             </div>
           </div>
 
-          <!-- Client Name -->
           <div class="advance-filter-field">
             <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Client Name (Pipe "|" separated)</label>
             <textarea [(ngModel)]="state().clientNames" rows="3" placeholder="Enter pipe separated Client Name for advance filter."
@@ -150,7 +134,6 @@
         </div>
       </div>
 
-      <!-- Action Buttons -->
       <div class="h-[80px] px-[24px] pt-[24px] pb-[24px] bg-white border-[#EDEBE9]">
         <div class="flex gap-[16px]">
           <button (click)="apply.emit()" class="h-[32px] px-[16px] bg-primary text-white rounded-[4px] font-['Roboto'] font-semibold text-[14px] leading-[20px] hover:opacity-90 transition-opacity">Apply</button>

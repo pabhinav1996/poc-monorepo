@@ -12,15 +12,15 @@ module.exports = {
       colors: {
         primary: {
           DEFAULT: '#4e2683',
-          hover: '#3B2E58', // implicit hover or darker shade
+          hover: '#3B2E58',
         },
         danger: '#cc333d',
         warning: '#e68217',
         success: '#60ad25',
         neutral: {
-          light: '#605E5C', // Standard text
-          dark: '#323130',  // Headers
-          border: '#d2d0ce', // Borders
+          light: '#605E5C',
+          dark: '#323130',
+          border: '#d2d0ce',
         }
       },
       fontFamily: {

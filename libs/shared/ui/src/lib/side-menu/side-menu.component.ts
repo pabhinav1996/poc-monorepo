@@ -17,7 +17,6 @@ export class SideMenuComponent implements OnInit, OnDestroy {
   private routerSubscription?: Subscription;
   private currentUrl = signal('/');
 
-  // Only show menu icons on non-dashboard pages
   get isDashboardPage(): boolean {
     return this.currentUrl() === '/' || this.currentUrl() === '';
   }
