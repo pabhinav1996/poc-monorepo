@@ -1,0 +1,806 @@
+// Details Page Styling - Figma Screen 3 Aligned (Pixel-Perfect)
+@use 'sass:color';
+
+// ===== Figma Design Tokens =====
+// Colors
+$primary-purple: #4E2683;
+$theme-primary: #0078D4;
+$status-badge: #6F66CC;
+$risk-high: #CC333D;
+$risk-medium: #E68217;
+$risk-low: #60AD25;
+$model-tag: #26A0BE;
+$risk-flag-tag: #26A0BE;
+
+// Text Colors
+$neutral-primary: #323130;
+$neutral-dark: #201F1E;
+$neutral-secondary: #605E5C;
+$neutral-secondary-alt: #8A8886;
+$gray-text: #5C6166;
+$light-gray-text: #717171;
+$placeholder-text: #B4BABF;
+$text-filled: #17181A;
+
+// Backgrounds & Borders
+$input-border: #B4BABF;
+$input-border-dark: #8A8886;
+$border-dark: #8A8886;
+$grid-border: #D2D0CE;
+$row-even: #F7F5FF;
+$row-odd: #FFFFFF;
+$header-bg: #FAFAFA;
+$drawer-border: #E1DFDD;
+
+// Shadows (Figma Elevation)
+$elevation-depth-8: 0px 3.2px 7.2px rgba(0, 0, 0, 0.13),
+                    0px 0.6px 1.8px rgba(0, 0, 0, 0.1);
+
+// Typography
+$font-family: 'Open Sans', sans-serif;
+$font-roboto: 'Roboto', sans-serif;
+
+// Issue #3: Background should be #FAFAFA (light gray), not pure white
+:host {
+  display: block;
+  height: 100%;
+}
+
+.details-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-family: $font-family;
+}
+
+// ===== Header Section =====
+.header-section {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.header-row-1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 8px; // Issue #1: Reduced left padding to match Figma
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-row-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 8px 8px; // Issue #1 & #6: Reduced left/right padding
+}
+
+// Issue #1: Wrapper to properly position date info after back button area
+.date-info-wrapper {
+  display: flex;
+  align-items: center;
+  // Left margin = back button width (32px) + gap (8px) + title section left padding (8px)
+  margin-left: 48px;
+}
+
+.back-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 4px;
+  
+  &:hover {
+    background-color: rgba(78, 38, 131, 0.08);
+  }
+  
+  img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.title-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 8px 7px 8px;
+}
+
+.alert-id {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  color: $primary-purple;
+}
+
+.badge {
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: white;
+}
+
+.status-badge {
+  background-color: $status-badge;
+}
+
+.risk-badge {
+  &.risk-high { background-color: $risk-high; }
+  &.risk-medium { background-color: $risk-medium; }
+  &.risk-low { background-color: $risk-low; }
+}
+
+// Issue #1: Pipe separator per Figma node 1:1845
+// Container has #D4D4D4 background with 2px gap creating visible separator
+.date-info-section {
+  display: flex;
+  align-items: center;
+  gap: 2px; // 2px gap creates pipe separator effect
+  background-color: #D4D4D4; // Gray separator color
+}
+
+.date-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px 0 4px; // pl:0/4px, pr:8px per Figma
+  background-color: $header-bg; // #FAFAFA background on each item
+}
+
+.date-text {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: $text-filled;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// Issue #2: Right side row2 for Hide Panel - needs to align with Next button
+.header-right-row2 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.text-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 6px 8px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: $primary-purple;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    &:hover { text-decoration: none; }
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// Toggle using Figma SVG images
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 16px;
+}
+
+.toggle-img-wrapper {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 20px;
+  
+  img {
+    display: block;
+  }
+}
+
+.toggle-label {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: $primary-purple;
+}
+
+// ===== Models & Risk Flags Bar =====
+.models-risk-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  margin: 16px 8px 8px 8px; // Issue #5: More gap above, less below
+  border: 1px solid $input-border;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.models-row,
+.risk-flags-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.section-label {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: black;
+  padding: 2px;
+  flex-shrink: 0; // Issue #4: Label doesn't shrink
+  // min-width removed - tags start right after colon
+}
+
+.tag {
+  height: 24px;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  margin: 1px;
+}
+
+.model-tag {
+  background-color: $model-tag;
+}
+
+.risk-flag-tag {
+  background-color: $risk-flag-tag;
+}
+
+// ===== Tab Bar - Issue #5: Proper spacing per Figma =====
+.tab-bar-wrapper {
+  padding: 0 8px; // Issue #1: Reduced padding
+  margin-top: 8px; // Issue #5: More gap between models/risk and tabs
+}
+
+.tab-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px; // 8px gap between tabs per Figma
+}
+
+.tab {
+  padding: 5px 16px 7px 16px;
+  border: none;
+  border-radius: 4px 4px 0 0;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &.unselected {
+    background-color: white;
+    border: 1px solid $primary-purple;
+    border-bottom: none;
+    color: $primary-purple;
+  }
+  
+  &.selected {
+    background-color: $primary-purple;
+    color: white;
+  }
+}
+
+// Issue #4: Full-width border below tabs
+.tab-bar-border {
+  width: 100%;
+  height: 1px;
+  background-color: $input-border;
+}
+
+// ===== Content Area - Issue #5: Reduced gap between tabs and content =====
+.content-area {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  background-color: $header-bg; // Same as page background
+  padding: 8px 8px 16px 8px; // Issue #1 & #5: Reduced top/side padding
+}
+
+// Issue #4 & #7: Main content styling with proper container per Figma
+.main-content {
+  flex: 1;
+  display: flex; // Flex to contain disambiguation content + right panel side by side
+  padding: 15px;
+  overflow-y: auto;
+  background-color: white; // #FAFAFA per user request
+  border: 1px solid $grid-border; // #D2D0CE per Figma
+  border-radius: 8px; // rounded corners per Figma
+  box-shadow: $elevation-depth-8; // Figma shadow
+  min-width: 0;
+}
+
+// ===== Disambiguation Content =====
+// Per Figma node 1:1963, left content area takes remaining width (total - 266px right panel)
+.disambiguation-content {
+  flex: 1; // Take remaining space
+  min-width: 0; // Allow shrinking
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding-right: 16px; // Gap between content and right panel border
+}
+
+// Sub tabs per Figma node 1:1966
+.sub-tab-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  padding-bottom: 3px;
+}
+
+.sub-tab {
+  padding: 5px 16px 7px 16px;
+  border: none;
+  background: transparent;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: $gray-text;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &.selected {
+    background-color: $header-bg;
+    color: $text-filled;
+    border-bottom: 3px solid $primary-purple;
+    margin-bottom: -3px;
+  }
+}
+
+.sub-tab-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: $input-border;
+}
+
+.entity-parent-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.dropdown-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.field-label {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: $gray-text;
+  padding: 5px 0;
+}
+
+// Issue #5: Dropdown styling - text color #5C6166 per Figma node 1:2074
+.dropdown {
+  position: relative;
+  flex: 1;
+  max-width: 250px;
+  
+  select {
+    width: 100%;
+    height: 32px;
+    padding: 6px 28px 6px 8px;
+    border: 1px solid $input-border; // #B4BABF per Figma
+    border-bottom-width: 2px; // 2px bottom border per Figma
+    border-radius: 4px; // 4px per Figma dropdown
+    background-color: white;
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: $gray-text; // #5C6166 per Figma
+    appearance: none;
+    cursor: pointer;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary-purple;
+    }
+    
+    option {
+      color: $gray-text;
+    }
+  }
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.p2e-id {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: $gray-text;
+}
+
+.flag-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flag-label {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: $primary-purple;
+}
+
+// ===== Entity Table =====
+.entity-table {
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  thead {
+    tr {
+      background-color: $header-bg;
+      border-bottom: 1px solid $border-dark;
+    }
+    
+    th {
+      padding: 10px 16px;
+      font-family: $font-family;
+      font-weight: 600; // Issue #2: Changed from 700 to 600 per Figma
+      font-size: 14px;
+      line-height: 20px;
+      color: $neutral-primary;
+      height: 43px;
+      box-sizing: border-box;
+      text-align: left;
+      
+      &.col-select {
+        text-align: center;
+        width: 78px;
+      }
+    }
+  }
+  
+  tbody {
+    tr {
+      height: 42px;
+      
+      &.even { background-color: $row-even; }
+      &.odd { background-color: $row-odd; }
+    }
+    
+    td {
+      padding: 10px;
+      vertical-align: middle;
+      text-align: left;
+      
+      &.col-select {
+        text-align: center;
+      }
+    }
+  }
+  
+  .col-select {
+    width: 78px;
+  }
+  
+  .col-name {
+    min-width: 150px;
+  }
+  
+  .col-type {
+    width: 180px;
+  }
+  
+  .col-identity {
+    width: 220px;
+  }
+}
+
+.radio-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: $primary-purple;
+    cursor: pointer;
+  }
+}
+
+.entity-name {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  color: $primary-purple;
+}
+
+.table-dropdown {
+  max-width: 150px;
+  
+  select {
+    width: 100%;
+    height: 32px;
+  }
+}
+
+// Issue #6: Text field styling per Figma nodes 1:2066 and 1:2064
+.text-field {
+  width: 100%;
+  height: 32px;
+  padding: 6px 8px;
+  border: 1px solid $input-border; // #B4BABF per Figma
+  border-bottom-width: 2px; // 2px bottom border per Figma
+  border-radius: 4px; // 4px per Figma
+  background-color: white;
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: $text-filled; // #17181A when filled per Figma node 1:2064
+  box-sizing: border-box;
+  
+  // Issue #6: Placeholder text in #B4BABF per Figma node 1:2066
+  &::placeholder {
+    color: $placeholder-text; // #B4BABF
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-purple;
+  }
+}
+
+.placeholder-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 256px;
+  color: #999;
+  font-family: $font-family;
+  font-size: 14px;
+}
+
+// ===== Right Panel - Issue #2: Inside main-content per Figma node 1:1974 =====
+// Border is trimmed from top/bottom per Figma
+.right-panel {
+  width: 488px; // Figma exact width
+  flex-shrink: 0;
+  margin-left: 0; // No gap, border creates visual separation
+  margin-top: 8px; // Trim border from top
+  margin-bottom: 8px; // Trim border from bottom
+  background-color: transparent; // Same as container background
+  // Only left border per Figma: border-[0px_0px_0px_1px]
+  border-left: 1px solid $input-border;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.panel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 16px;
+  padding-top: 252px; // Icon starts at 252px from top per Figma
+  text-align: center;
+}
+
+.panel-icon {
+  margin-bottom: 16px; // Gap between icon and title
+  
+  img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.panel-title {
+  font-family: $font-family;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  color: $neutral-primary;
+  margin: 0 0 28px 0; // 28px gap to description per Figma (392-348-24 line height)
+}
+
+.panel-description {
+  font-family: $font-family;
+  font-size: 14px;
+  line-height: 20px;
+  color: $light-gray-text;
+  width: 266px; // Exact width per Figma
+  max-width: 266px;
+  margin: 0;
+  
+  .bold {
+    font-weight: 600;
+  }
+  
+  .light {
+    font-weight: 400;
+  }
+}
+
+// ===== Quick Guide Drawer =====
+.guide-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.guide-drawer {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 480px;
+  background-color: white;
+  box-shadow: $elevation-depth-8;
+  display: flex;
+  flex-direction: column;
+}
+
+.guide-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid $drawer-border;
+}
+
+.guide-title {
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  color: $primary-purple;
+  margin: 0;
+}
+
+.close-btn {
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  color: #3B3A39;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  
+  &:hover {
+    color: $neutral-primary;
+  }
+}
+
+.guide-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.guide-text {
+  border: 1px solid $drawer-border;
+  padding: 16px;
+  font-family: $font-family;
+  font-size: 14px;
+  line-height: 20px;
+  color: $neutral-primary;
+  
+  p {
+    margin: 0 0 16px 0;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  .step-number {
+    color: $primary-purple;
+    font-weight: 600;
+  }
+}
+
+.guide-footer {
+  padding: 16px 24px;
+  border-top: 1px solid $drawer-border;
+}
+
+.close-guide-btn {
+  padding: 8px 16px;
+  background-color: $primary-purple;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: $font-family;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: color.adjust($primary-purple, $lightness: -10%);
+  }
+}

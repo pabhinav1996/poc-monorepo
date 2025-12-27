@@ -1,0 +1,24 @@
+:host { display: block; height: 100%; }
+
+// Menu item styling - matches Figma design
+.menu-item {
+  // Default (non-selected) state
+  .menu-item-text {
+    font-weight: 400;
+    color: #323130;
+  }
+
+  // Selected/active state - Figma node 1:199
+  &.active {
+    background-color: #e8f4ef;
+    border-radius: 4px 0 0 4px;
+    margin-left: 8px;
+    width: calc(100% - 8px);
+
+    .menu-item-text {
+      font-weight: 600;
+      color: #4e2683;
+      left: 28px; // Adjust for the margin-left offset
+    }
+  }
+}

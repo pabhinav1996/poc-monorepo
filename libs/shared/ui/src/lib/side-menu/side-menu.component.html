@@ -1,0 +1,162 @@
+<div class="h-full flex transition-all duration-300"
+     [ngClass]="isCollapsed ? 'w-[77px]' : 'w-[285px]'">
+
+  <!-- Collapsed View -->
+  <div class="w-[77px] h-full bg-[#fafafa] flex flex-col shrink-0">
+    <div class="flex-1 bg-white border-r border-[#d2d0ce] flex flex-col relative">
+      
+      <!-- Collapsed state icons per Figma -->
+      <div class="flex flex-col gap-[24px] items-center absolute left-[5px] top-[24px]" *ngIf="isCollapsed">
+        <!-- Expand Button at TOP -->
+        <button (click)="toggleCollapse()" 
+                class="w-6 h-6 flex items-center justify-center border border-[#8a8886] rounded bg-white hover:bg-gray-50">
+          <svg class="w-3 h-3 text-[#1a3fd6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+
+        <!-- SMART Icon - Same styling as expanded but without SMART text -->
+        <div class="flex flex-col gap-[4px] items-center px-[2px] py-[3px] rounded-[4px] bg-[#e8f4ef]">
+          <div class="w-[64.828px] h-[48px] flex items-center justify-center relative">
+            <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 36.6667C16.1389 35.6944 12.9514 33.4792 10.4375 30.0208C7.92361 26.5625 6.66667 22.7222 6.66667 18.5V8.33333L20 3.33333L33.3333 8.33333V18.5C33.3333 22.7222 32.0764 26.5625 29.5625 30.0208C27.0486 33.4792 23.8611 35.6944 20 36.6667ZM20 33.1667C22.8889 32.25 25.2778 30.4167 27.1667 27.6667C29.0556 24.9167 30 21.8611 30 18.5V10.625L20 6.875L10 10.625V18.5C10 21.8611 10.9444 24.9167 12.8333 27.6667C14.7222 30.4167 17.1111 32.25 20 33.1667ZM20 28.3333C20 26 20.8056 24.0278 22.4167 22.4167C24.0278 20.8056 26 20 28.3333 20C26 20 24.0278 19.1944 22.4167 17.5833C20.8056 15.9722 20 14 20 11.6667C20 14 19.1944 15.9722 17.5833 17.5833C15.9722 19.1944 14 20 11.6667 20C14 20 15.9722 20.8056 17.5833 22.4167C19.1944 24.0278 20 26 20 28.3333Z" fill="#4E2683"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Icon 1: Briefcase (My Metrics) - 54x54 -->
+        <div class="size-[54px] flex items-center justify-center cursor-pointer hover:opacity-80">
+          <svg class="size-full" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M39.8 17.7368H35V14.3684C35 12.4989 33.576 11 31.8 11H22.2C20.424 11 19 12.4989 19 14.3684V17.7368H14.2C12.424 17.7368 11 19.2358 11 21.1053V39.6316C11 41.5011 12.424 43 14.2 43H39.8C41.576 43 43 41.5011 43 39.6316V21.1053C43 19.2358 41.576 17.7368 39.8 17.7368ZM22.2 14.3684H31.8V17.7368H22.2V14.3684ZM39.8 39.6316H14.2V36.2632H39.8V39.6316ZM39.8 31.2105H14.2V21.1053H19V24.4737H22.2V21.1053H31.8V24.4737H35V21.1053H39.8V31.2105Z" fill="#4E2683"/>
+          </svg>
+        </div>
+
+        <!-- Icon 2: Assessment Chart (Alert Queue) - 32x32 with padding -->
+        <div class="size-[54px] flex items-center justify-center p-[11px] cursor-pointer hover:opacity-80">
+          <svg class="size-[32px]" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25.3333 4H6.66667C5.2 4 4 5.2 4 6.66667V25.3333C4 26.8 5.2 28 6.66667 28H25.3333C26.8 28 28 26.8 28 25.3333V6.66667C28 5.2 26.8 4 25.3333 4ZM25.3333 25.3333H6.66667V6.66667H25.3333V25.3333ZM9.33333 13.3333H12V22.6667H9.33333V13.3333ZM14.6667 9.33333H17.3333V22.6667H14.6667V9.33333ZM20 17.3333H22.6667V22.6667H20V17.3333Z" fill="#4E2683"/>
+          </svg>
+        </div>
+
+        <!-- Icon 3: Assessment Chart (Preferences) -->
+        <div class="size-[54px] flex items-center justify-center p-[11px] cursor-pointer hover:opacity-80">
+          <svg class="size-[32px]" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25.3333 4H6.66667C5.2 4 4 5.2 4 6.66667V25.3333C4 26.8 5.2 28 6.66667 28H25.3333C26.8 28 28 26.8 28 25.3333V6.66667C28 5.2 26.8 4 25.3333 4ZM25.3333 25.3333H6.66667V6.66667H25.3333V25.3333ZM9.33333 13.3333H12V22.6667H9.33333V13.3333ZM14.6667 9.33333H17.3333V22.6667H14.6667V9.33333ZM20 17.3333H22.6667V22.6667H20V17.3333Z" fill="#4E2683"/>
+          </svg>
+        </div>
+
+        <!-- Icon 4: Assessment Chart (Menu-4) -->
+        <div class="size-[54px] flex items-center justify-center p-[11px] cursor-pointer hover:opacity-80">
+          <svg class="size-[32px]" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25.3333 4H6.66667C5.2 4 4 5.2 4 6.66667V25.3333C4 26.8 5.2 28 6.66667 28H25.3333C26.8 28 28 26.8 28 25.3333V6.66667C28 5.2 26.8 4 25.3333 4ZM25.3333 25.3333H6.66667V6.66667H25.3333V25.3333ZM9.33333 13.3333H12V22.6667H9.33333V13.3333ZM14.6667 9.33333H17.3333V22.6667H14.6667V9.33333ZM20 17.3333H22.6667V22.6667H20V17.3333Z" fill="#4E2683"/>
+          </svg>
+        </div>
+
+        <!-- Icon 5: Assessment Chart (Operational Metrics) -->
+        <div class="size-[54px] flex items-center justify-center p-[11px] cursor-pointer hover:opacity-80">
+          <svg class="size-[32px]" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M25.3333 4H6.66667C5.2 4 4 5.2 4 6.66667V25.3333C4 26.8 5.2 28 6.66667 28H25.3333C26.8 28 28 26.8 28 25.3333V6.66667C28 5.2 26.8 4 25.3333 4ZM25.3333 25.3333H6.66667V6.66667H25.3333V25.3333ZM9.33333 13.3333H12V22.6667H9.33333V13.3333ZM14.6667 9.33333H17.3333V22.6667H14.6667V9.33333ZM20 17.3333H22.6667V22.6667H20V17.3333Z" fill="#4E2683"/>
+          </svg>
+        </div>
+
+        <!-- Icon 6: LOG Icon (KPI) - From Figma -->
+        <div class="size-[54px] flex items-center justify-center p-[11px] cursor-pointer hover:opacity-80">
+          <img src="/log-icon.png" alt="LOG" class="size-[32px] object-cover" />
+        </div>
+      </div>
+
+      <!-- Non-collapsed but still show SMART icon -->
+      <div class="flex flex-col gap-[24px] items-center absolute left-[5px] top-[24px]" *ngIf="!isCollapsed">
+        <!-- SMART App Button - Figma exact styling -->
+        <div class="flex flex-col gap-[4px] items-center px-[2px] py-[3px] rounded-[4px] bg-[#e8f4ef]">
+          <div class="w-[64.828px] h-[48px] flex items-center justify-center relative">
+            <!-- Shield Spark Icon from Figma - 40x40 -->
+            <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 36.6667C16.1389 35.6944 12.9514 33.4792 10.4375 30.0208C7.92361 26.5625 6.66667 22.7222 6.66667 18.5V8.33333L20 3.33333L33.3333 8.33333V18.5C33.3333 22.7222 32.0764 26.5625 29.5625 30.0208C27.0486 33.4792 23.8611 35.6944 20 36.6667ZM20 33.1667C22.8889 32.25 25.2778 30.4167 27.1667 27.6667C29.0556 24.9167 30 21.8611 30 18.5V10.625L20 6.875L10 10.625V18.5C10 21.8611 10.9444 24.9167 12.8333 27.6667C14.7222 30.4167 17.1111 32.25 20 33.1667ZM20 28.3333C20 26 20.8056 24.0278 22.4167 22.4167C24.0278 20.8056 26 20 28.3333 20C26 20 24.0278 19.1944 22.4167 17.5833C20.8056 15.9722 20 14 20 11.6667C20 14 19.1944 15.9722 17.5833 17.5833C15.9722 19.1944 14 20 11.6667 20C14 20 15.9722 20.8056 17.5833 22.4167C19.1944 24.0278 20 26 20 28.3333Z" fill="#4E2683"/>
+            </svg>
+          </div>
+          <span class="text-[14px] font-medium text-[#4e2683] leading-[20px] text-center whitespace-nowrap" style="font-family: 'Roboto', sans-serif;">SMART</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expanded View - Figma exact styling -->
+  <div *ngIf="!isCollapsed" class="w-[208px] h-full bg-white border-r border-[#d2d0ce] flex flex-col">
+    <!-- Header with ML Guardian and Collapse Button - h-[42px] -->
+    <div class="h-[42px] relative shrink-0 w-full flex items-center justify-between px-4">
+      <span class="text-[14px] font-semibold text-[#4e2683] leading-[20px]" 
+            style="font-family: 'Open Sans', sans-serif;">ML Guardian</span>
+      <button (click)="toggleCollapse()" 
+              class="w-6 h-6 flex items-center justify-center border border-[#8a8886] rounded bg-white hover:bg-gray-50">
+        <svg class="w-3 h-3 text-[#1a3fd6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Separator - 8px height -->
+    <div class="flex items-center justify-center h-[8px] px-[6px] shrink-0">
+      <div class="h-px w-full bg-[#d2d0ce]"></div>
+    </div>
+
+    <!-- Operations Section Header - h-[42px] -->
+    <div class="h-[42px] relative shrink-0 w-full">
+      <span class="absolute left-[16px] top-1/2 -translate-y-1/2 text-[14px] font-semibold text-[#393d40] leading-[20px]"
+            style="font-family: 'Open Sans', sans-serif;">Operations</span>
+    </div>
+
+    <!-- My Metrics - h-[42px] -->
+    <a routerLink="/" 
+       class="menu-item h-[42px] relative shrink-0 w-full block"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: true}">
+      <span class="menu-item-text absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] leading-[20px]"
+            style="font-family: 'Open Sans', sans-serif;">My Metrics</span>
+    </a>
+
+    <!-- Alert Queue - h-[42px] -->
+    <a routerLink="/operations" 
+       class="menu-item h-[42px] relative shrink-0 w-full block"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{exact: true}">
+      <span class="menu-item-text absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] leading-[20px]"
+            style="font-family: 'Open Sans', sans-serif;">Alert Queue</span>
+    </a>
+
+    <!-- Preferences - h-[42px] -->
+    <a class="h-[42px] relative shrink-0 w-full block cursor-pointer">
+      <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-[#323130] leading-[20px]"
+            style="font-family: 'Open Sans', sans-serif;">Preferences</span>
+    </a>
+
+    <!-- Menu - 4 - h-[42px] -->
+    <a class="h-[42px] relative shrink-0 w-full block cursor-pointer">
+      <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-[#323130] leading-[20px]"
+            style="font-family: 'Open Sans', sans-serif;">Menu - 4</span>
+    </a>
+
+    <!-- Separator - 8px height -->
+    <div class="flex items-center justify-center h-[8px] px-[6px] shrink-0">
+      <div class="h-px w-full bg-[#d2d0ce]"></div>
+    </div>
+
+    <!-- Insights Section Header - h-[42px] -->
+    <div class="h-[42px] relative shrink-0 w-full">
+      <span class="absolute left-[16px] top-1/2 -translate-y-1/2 text-[14px] font-semibold text-[#393d40] leading-[20px]"
+            style="font-family: 'Open Sans', sans-serif;">Insights</span>
+    </div>
+
+    <!-- Operational Metrics - h-[42px] -->
+    <a class="h-[42px] relative shrink-0 w-full block cursor-pointer">
+      <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-[#323130] leading-[20px]"
+            style="font-family: 'Open Sans', sans-serif;">Operational Metrics</span>
+    </a>
+
+    <!-- KPI - h-[42px] -->
+    <a class="h-[42px] relative shrink-0 w-full block cursor-pointer">
+      <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-[#323130] leading-[20px]"
+            style="font-family: 'Open Sans', sans-serif;">KPI</span>
+    </a>
+  </div>
+</div>

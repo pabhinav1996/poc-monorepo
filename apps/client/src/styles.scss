@@ -1,0 +1,313 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto:wght@400;500;600&display=swap');
+
+/* Microsoft Fabric MDL2 Assets Icon Font */
+@import url('https://static2.sharepointonline.com/files/fabric/assets/icons/fabricmdl2icons.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Figma Design Tokens */
+:root {
+  /* Primary Colors */
+  --color-primary-purple: #4e2683;
+  --color-theme-primary: #1A3FD6;
+  --color-red-accent: #a6212a;
+  
+  /* Text Colors */
+  --color-text-primary: #323130;
+  --color-text-secondary: #605E5C;
+  --color-text-tertiary: #3B3A39;
+  --color-text-disabled: #A19F9D;
+  
+  /* Background & Borders */
+  --color-white: #FFFFFF;
+  --color-border: #D2D0CE;
+  --color-border-input: #8A8886;
+  --color-divider: #E1DFDD;
+  --color-bg-light: #FAF9F8;
+  
+  /* Status Colors */
+  --color-status-new: #107C10;
+  --color-status-in-progress: #FFB900;
+  --color-status-escalated: #D83B01;
+  --color-status-closed: #8A8886;
+  
+  /* Risk Rating Colors */
+  --color-risk-low: #107C10;
+  --color-risk-medium: #FFB900;
+  --color-risk-high: #D13438;
+  
+  /* Priority Colors */
+  --color-priority-p1: #D13438;
+  --color-priority-p2: #FFB900;
+  --color-priority-p3: #107C10;
+  
+  /* Shadows */
+  --shadow-depth-8: 0px 0.6px 1.8px rgba(0,0,0,0.1), 0px 3.2px 7.2px rgba(0,0,0,0.13);
+  --shadow-depth-64: 0px 4.8px 14.4px rgba(0,0,0,0.18), 0px 25.6px 57.6px rgba(0,0,0,0.22);
+  
+  /* Font Families */
+  --font-heading: 'Open Sans', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+
+  /* AG Grid Global Overrides (Confirmed Working Strategy) */
+  --ag-pinned-column-border: none;
+  --ag-header-background-color: #FAFAFA !important;
+  
+  .ag-checkbox-input-wrapper::after{
+    content: none;
+  }
+}
+
+/* Global Font Settings */
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+/* ===== AG Grid CSS Imports ===== */
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
+
+/* ===== AG Grid Theme Variable Overrides ===== */
+/* Override AG Grid's CSS custom properties at the theme level */
+.ag-theme-quartz {
+  /* Completely disable all borders */
+  --ag-borders: none;
+  --ag-borders-critical: none;
+  --ag-borders-secondary: none;
+  --ag-borders-row: none;
+  --ag-row-border-width: 0;
+  --ag-row-border-style: none;
+  --ag-row-border-color: transparent;
+  --ag-border-color: transparent;
+  --ag-secondary-border-color: transparent;
+  --ag-cell-horizontal-border: none;
+  --ag-header-column-separator-display: none;
+  --ag-header-column-resize-handle-display: none;
+  --ag-header-column-separator-color: transparent;
+  --ag-header-column-resize-handle-color: transparent;
+  --ag-pinned-column-border-width: 0;
+  
+  /* Row styling */
+  --ag-row-height: 32px;
+  --ag-odd-row-background-color: #ffffff;
+  --ag-row-hover-color: rgba(78, 38, 131, 0.04);
+  --ag-selected-row-background-color: rgba(78, 38, 131, 0.08);
+  
+  /* Header styling */
+  --ag-header-height: 43px;
+  --ag-header-background-color: #fafafa;
+  --ag-header-foreground-color: #323130;
+  
+  /* Font */
+  --ag-font-family: 'Open Sans', sans-serif;
+  --ag-font-size: 14px;
+}
+
+/* ===== AG Grid Style Overrides with Maximum Specificity ===== */
+/* Target specific elements with !important to override any inline styles */
+
+/* Remove row borders */
+div.ag-theme-quartz div.ag-row,
+div.ag-theme-quartz .ag-row.ag-row-even,
+div.ag-theme-quartz .ag-row.ag-row-odd,
+div.ag-theme-quartz .ag-root-wrapper .ag-row {
+  border: none !important;
+  border-bottom: 0 solid transparent !important;
+  border-top: 0 solid transparent !important;
+}
+
+/* Remove cell borders */
+div.ag-theme-quartz div.ag-cell,
+div.ag-theme-quartz .ag-root-wrapper .ag-cell {
+  border: none !important;
+  border-right: 0 solid transparent !important;
+  border-left: 0 solid transparent !important;
+}
+
+/* Remove header cell borders and vertical separators */
+div.ag-theme-quartz div.ag-header-cell {
+  border: none !important;
+  border-right: none !important;
+  border-left: none !important;
+}
+
+/* Hide the vertical separator line after each header cell */
+div.ag-theme-quartz .ag-header-cell::after,
+div.ag-theme-quartz .ag-header-group-cell::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  opacity: 0 !important;
+}
+
+/* Hide resize handle AND its pseudo-element completely */
+div.ag-theme-quartz .ag-header-cell-resize,
+.ag-theme-quartz .ag-header-cell-resize {
+  display: none !important;
+  width: 0 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+div.ag-theme-quartz .ag-header-cell-resize::after,
+.ag-theme-quartz .ag-header-cell-resize::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background-color: transparent !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Remove pinned column borders */
+div.ag-theme-quartz .ag-pinned-left-header,
+div.ag-theme-quartz .ag-pinned-left-cols-container {
+  border-right: none !important;
+}
+
+/* Alternate row colors - force background */
+div.ag-theme-quartz .ag-row.ag-row-odd {
+  background-color: #ffffff !important;
+}
+
+div.ag-theme-quartz .ag-row.ag-row-even {
+  background-color: #f7f5ff !important;
+}
+
+/* Header only border */
+div.ag-theme-quartz .ag-header {
+  background-color: #fafafa !important;
+  border: none !important;
+  border-bottom: 1px solid #8a8886 !important;
+}
+
+div.ag-theme-quartz .ag-header-row {
+  border: none !important;
+}
+
+/* Checkbox - Using default AG Grid styling */
+
+// =============================================================================
+// AG GRID OVERRIDES - OPERATIONS FEATURE (Figma Improvements)
+// =============================================================================
+
+body .ag-theme-quartz {
+  // CRITICAL: Overriding CSS Variables
+  // (Moved to :root for global effectiveness per recent verification)
+
+  // ---------------------------------------------------------------------------
+  // OBSERVATION 1: Outer Shell (Curved Radius, No Border)
+  // ---------------------------------------------------------------------------
+  .ag-root-wrapper {
+     border: none !important; 
+     border-radius: 4px !important; 
+     overflow: hidden !important;
+     background-color: #FAFAFA !important; 
+  }
+  
+  // ---------------------------------------------------------------------------
+  // OBSERVATION 3: Header Styling (Background)
+  // ---------------------------------------------------------------------------
+  .ag-header {
+    background-color: #FAFAFA !important;
+    border-bottom: 1px solid #8A8886 !important;
+  }
+  
+  // ---------------------------------------------------------------------------
+  // OBSERVATION 2: Removing Vertical Resizer/Divider
+  // ---------------------------------------------------------------------------
+  .ag-header-cell-resize::after,
+  .ag-header-cell-resize {
+      display: none !important;
+      content: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+  }
+  
+  // Specific targeting for Alert Id to be absolutely sure
+  .ag-header-cell[col-id="id"] .ag-header-cell-resize,
+  .ag-header-cell[col-id="id"] .ag-header-cell-resize::after,
+  .ag-header-cell[col-id="id"] .ag-react-container ~ .ag-header-cell-resize {
+      display: none !important;
+      width: 0 !important;
+      visibility: hidden !important;
+  }
+
+  .ag-pinned-left-header,
+  .ag-pinned-left-cols-container {
+    box-shadow: none !important; 
+    border-right: none !important;
+  }
+
+  // ---------------------------------------------------------------------------
+  // OBSERVATION 4: Checkbox Styling - Aggressive Fix
+  // ---------------------------------------------------------------------------
+  // Quartz uses a wrapper + input + ::after/icon. 
+  // If variables fail, we force layout size.
+  
+  .ag-checkbox-input-wrapper {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    line-height: 20px !important;
+    font-size: 20px !important; // Scales the internal icon
+    
+    // Explicitly target the inner input/icon generic classes
+    &::after, 
+    .ag-icon {
+        font-size: 20px !important;
+        line-height: 20px !important;
+        width: 20px !important;
+        height: 20px !important;
+    }
+    
+    &.ag-checked {
+        --ag-checkbox-checked-color: #4E2683 !important; 
+        --ag-checkbox-background-color: #4E2683 !important;
+    }
+  }
+  
+  // Fallback: If font-size doesn't scale it enough, use transform
+  // The default is 12px, so 20/12 = ~1.67
+  /* 
+  .ag-checkbox-input-wrapper {
+      transform: scale(1.6); 
+      transform-origin: center;
+  } 
+  */
+
+
+  // ---------------------------------------------------------------------------
+  // GENERAL CLEANUP (Cells, Rows)
+  // ---------------------------------------------------------------------------
+  .ag-row {
+    border-bottom: none !important; // Remove row dividers if Figma doesn't have them
+  }
+  
+  .ag-cell {
+    border: none !important;
+    line-height: 32px !important; // Vertically center text
+    display: flex;
+    align-items: center;
+  }
+  
+  // Focused cell outline removal
+  .ag-cell-focus {
+    border: none !important;
+    outline: none !important;
+  }
+}
