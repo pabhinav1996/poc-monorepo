@@ -91,7 +91,7 @@ export class OperationsComponent {
       lockPinned: true,
       sortable: false,
       filter: false,
-      cellRenderer: (params: any) => `<span class="text-[#4e2683] cursor-pointer">${params.value}</span>` 
+      cellRenderer: (params: any) => `<span class="text-accent-purple font-opensans font-semibold text-[14px] cursor-pointer">${params.value}</span>` 
     },
     { 
       field: 'type', 
@@ -100,7 +100,7 @@ export class OperationsComponent {
       minWidth: 70,
       sortable: false,
       filter: false,
-      cellRenderer: (params: any) => `<span class="text-[#4e2683]">${params.value}</span>` 
+      cellRenderer: (params: any) => `<span class="text-accent-purple font-roboto font-normal text-[14px]">${params.value}</span>` 
     },
     { 
       field: 'generatedOn', 
@@ -109,7 +109,7 @@ export class OperationsComponent {
       minWidth: 120,
       sortable: false,
       filter: false,
-      cellRenderer: (params: any) => `<span class="text-[#4e2683] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-accent-purple font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
     { 
       field: 'daysLapsed', 
@@ -118,7 +118,7 @@ export class OperationsComponent {
       minWidth: 110,
       sortable: false,
       filter: false,
-      cellRenderer: (params: any) => `<span class="text-[#37317A] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-accent-purple font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
     { 
       field: 'priority', 
@@ -135,7 +135,7 @@ export class OperationsComponent {
         };
         const color = colors[params.value] || '#8A8886';
 
-        return `<div class="flex items-center gap-[8px]"><div class="w-[16px] h-[16px] rounded-[2px] shrink-0" style="background-color: ${color};"></div><span class="text-[#37317a] font-opensans font-semibold text-[14px]">${params.value}</span></div>`;
+        return `<div class="flex items-center gap-[8px]"><div class="w-[16px] h-[16px] rounded-[2px] shrink-0" style="background-color: ${color};"></div><span class="text-accent-purple font-opensans font-semibold text-[14px]">${params.value}</span></div>`;
       }
     },
     { 
@@ -145,7 +145,7 @@ export class OperationsComponent {
       minWidth: 100,
       sortable: false,
       filter: false,
-      cellRenderer: (params: any) => `<span class="text-[#37317A] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-accent-purple font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
     { 
       field: 'jurisdiction', 
@@ -155,7 +155,7 @@ export class OperationsComponent {
       sortable: false,
       filter: false,
       cellStyle: { textAlign: 'center', justifyContent: 'center' },
-      cellRenderer: (params: any) => `<span class="text-[#4e2683]">${params.value}</span>` 
+      cellRenderer: (params: any) => `<span class="text-accent-purple font-roboto font-normal text-[14px]">${params.value}</span>` 
     },
     { 
       field: 'riskRating', 
@@ -182,7 +182,7 @@ export class OperationsComponent {
       sortable: false,
       filter: false,
       cellStyle: { textAlign: 'right', justifyContent: 'flex-end' },
-      cellRenderer: (params: any) => `<span class="text-[#37317A] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-accent-purple font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
     { 
       field: 'clientName', 
@@ -191,7 +191,7 @@ export class OperationsComponent {
       minWidth: 130,
       sortable: false,
       filter: false,
-      cellRenderer: (params: any) => `<span class="text-[#4e2683]">${params.value}</span>` 
+      cellRenderer: (params: any) => `<span class="text-accent-purple font-roboto font-normal text-[14px]">${params.value}</span>` 
     },
 
     { 
@@ -202,7 +202,7 @@ export class OperationsComponent {
       sortable: false,
       filter: false,
       suppressSizeToFit: true,
-      cellRenderer: (params: any) => `<span class="text-[#37317A] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-accent-purple font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
     { 
       field: 'lineOfBusiness', 
@@ -212,7 +212,7 @@ export class OperationsComponent {
       sortable: false,
       filter: false,
       suppressSizeToFit: true,
-      cellRenderer: (params: any) => `<span class="text-[#37317A] font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
+      cellRenderer: (params: any) => `<span class="text-accent-purple font-roboto font-normal text-[14px] leading-[32px]">${params.value}</span>`
     },
   ];
 

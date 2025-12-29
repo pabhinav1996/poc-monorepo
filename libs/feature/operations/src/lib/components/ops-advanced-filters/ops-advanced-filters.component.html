@@ -5,75 +5,62 @@
 
     <div class="advance-filters-panel bg-white h-full w-[488px] shadow-[0px_4.8px_14.4px_0px_rgba(0,0,0,0.18),0px_25.6px_57.6px_0px_rgba(0,0,0,0.22)] flex flex-col relative">
 
-      <div class="h-[52px] pt-[24px] px-[24px] flex justify-between items-start border-[#EDEBE9]">
+      <div class="h-[52px] pt-sp-6 px-sp-6 flex justify-between items-start border-border-panel">
         <h2 class="text-[20px] font-normal text-primary leading-[28px] font-opensans">Advance Filters</h2>
-        <button (click)="close.emit()" class="w-[44px] h-[44px] flex items-center justify-center text-neutral-light hover:text-neutral-dark -mt-[8px] -mr-[12px]">
+        <button (click)="close.emit()" class="w-[44px] h-[44px] flex items-center justify-center text-neutral-light hover:text-neutral-dark -mt-sp-2 -mr-[12px]">
           <svg class="w-[12px] h-[12px]" fill="currentColor" viewBox="0 0 12 12">
             <path d="M11.4 0.6L6 6L0.6 0.6L0 1.2L5.4 6.6L0 12L0.6 12.6L6 7.2L11.4 12.6L12 12L6.6 6.6L12 1.2L11.4 0.6Z"/>
           </svg>
         </button>
       </div>
 
-      <div class="flex-1 overflow-y-auto px-[24px] pt-0 pb-[20px]">
-        <div class="flex flex-col gap-[8px]">
+      <div class="flex-1 overflow-y-auto px-sp-6 pt-0 pb-[20px]">
+        <div class="flex flex-col gap-sp-2">
           <div class="advance-filter-field">
-            <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Alert Id (Comma separated)</label>
+            <label class="block font-opensans font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Alert Id (Comma separated)</label>
             <textarea [(ngModel)]="state().alertIds" rows="3" placeholder="Enter comma separated Alert ID for advance filter."
-            class="w-[440px] h-[64px] border border-[#B4BABF] rounded-[4px] px-[8px] py-[8px] text-[14px] font-['Open_Sans'] text-neutral-light placeholder-[#B4BABF] focus:outline-none focus:ring-1 focus:ring-primary resize-none"></textarea>
+            class="w-[440px] h-[64px] border border-border-input rounded-[4px] px-sp-2 py-sp-2 text-[14px] font-opensans text-neutral-light placeholder-text-placeholder focus:outline-none focus:ring-1 focus:ring-primary resize-none"></textarea>
           </div>
-          <div class="advance-filter-field">
-            <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Type</label>
-            <div class="relative w-[300px]">
-              <select [(ngModel)]="state().type" class="advance-filter-select w-full h-[32px] border border-[#B4BABF] rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] text-neutral-light focus:outline-none focus:ring-1 focus:ring-primary appearance-none bg-white pr-[32px]">
-                <option value="" class="text-[#B4BABF]">Placeholder</option>
-                @for (t of filters()?.types; track t) {
-                  <option [value]="t">{{t}}</option>
-                }
-              </select>
-              <svg class="absolute right-[8px] top-[8px] w-[12px] h-[16px] pointer-events-none text-neutral-light" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </div>
+          <poc-dropdown
+            label="Type"
+            [options]="toOptions(filters()?.types)"
+            [value]="state().type"
+            (valueChange)="onDropdownChange('type', $event)"
+            placeholder="Placeholder"
+            width="300px"
+          ></poc-dropdown>
 
-          <div class="flex gap-[40px]">
+          <div class="flex gap-sp-10">
             <div class="advance-filter-field w-[200px]">
-              <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">From Generated Date</label>
+              <label class="block font-opensans font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">From Generated Date</label>
               <div class="relative">
                 <input type="date" [(ngModel)]="state().fromDate" [max]="todayDate()"
-                  class="w-full h-[32px] border border-[#B4BABF] rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] text-neutral-light focus:outline-none focus:ring-1 focus:ring-primary">
+                  class="w-full h-[32px] border border-border-input rounded-[4px] px-sp-2 text-[14px] font-opensans text-neutral-light focus:outline-none focus:ring-1 focus:ring-primary">
               </div>
             </div>
             <div class="advance-filter-field w-[200px]">
-              <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">To Generated Date</label>
+              <label class="block font-opensans font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">To Generated Date</label>
               <div class="relative">
                 <input type="date" [(ngModel)]="state().toDate" [max]="todayDate()"
-                  class="w-full h-[32px] border border-[#B4BABF] rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] text-neutral-light focus:outline-none focus:ring-1 focus:ring-primary">
+                  class="w-full h-[32px] border border-border-input rounded-[4px] px-sp-2 text-[14px] font-opensans text-neutral-light focus:outline-none focus:ring-1 focus:ring-primary">
               </div>
             </div>
           </div>
 
           @for (field of dropdownFields(); track field.key) {
-            <div class="advance-filter-field">
-              <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">{{ field.label }}</label>
-              <div class="relative w-[300px]">
-                <select [(ngModel)]="$any(state())[field.key]"
-                  class="advance-filter-select w-full h-[32px] border border-[#B4BABF] rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] text-neutral-light focus:outline-none focus:ring-1 focus:ring-primary appearance-none bg-white pr-[32px]">
-                  <option value="" class="text-[#B4BABF]">Placeholder</option>
-                  @for (opt of field.options; track opt) {
-                    <option [value]="opt">{{ opt }}</option>
-                  }
-                </select>
-                <svg class="absolute right-[8px] top-[8px] w-[12px] h-[16px] pointer-events-none text-neutral-light" viewBox="0 0 12 12" fill="none">
-                  <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </div>
+            <poc-dropdown
+              [label]="field.label"
+              [options]="field.options"
+              [value]="$any(state())[field.key]"
+              (valueChange)="onDropdownChange(field.key, $event)"
+              placeholder="Placeholder"
+              width="300px"
+            ></poc-dropdown>
           }
 
           <div class="advance-filter-field">
-            <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Score Range</label>
-            <div class="flex items-center gap-[8px] h-[36px] w-[358px]">
+            <label class="block font-opensans font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Score Range</label>
+            <div class="flex items-center gap-sp-2 h-[36px] w-[358px]">
               <span class="text-[14px] font-normal text-neutral-light w-[24px] text-left shrink-0 font-opensans">{{state().scoreMin}}</span>
               <div class="score-range-slider flex-1 relative h-[16px]">
                 <div class="absolute w-full h-[4px] bg-success rounded-full top-1/2 -translate-y-1/2"></div>
@@ -96,10 +83,10 @@
           </div>
 
           <div class="advance-filter-field">
-            <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center"># Rules Applied</label>
-            <div class="flex items-center gap-[8px] h-[28px] w-[358px]">
+            <label class="block font-opensans font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center"># Rules Applied</label>
+            <div class="flex items-center gap-sp-2 h-[28px] w-[358px]">
               <div class="flex-1 relative h-[16px]">
-                <div class="absolute w-full h-[4px] bg-[#E1DFDD] rounded-full top-1/2 -translate-y-1/2"></div>
+                <div class="absolute w-full h-[4px] bg-border-divider rounded-full top-1/2 -translate-y-1/2"></div>
                 <div class="absolute h-[4px] bg-success rounded-full top-1/2 -translate-y-1/2"
                 [style.width.%]="(state().rulesApplied / 20) * 100"></div>
                 <input type="range"
@@ -111,34 +98,29 @@
             </div>
           </div>
 
-          <div class="advance-filter-field">
-            <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Line of Business</label>
-            <div class="relative w-[300px]">
-              <select [(ngModel)]="state().lineOfBusiness" class="advance-filter-select w-full h-[32px] border border-[#B4BABF] rounded-[4px] px-[8px] text-[14px] font-['Open_Sans'] text-neutral-light focus:outline-none focus:ring-1 focus:ring-primary appearance-none bg-white pr-[32px]">
-                <option value="" class="text-[#B4BABF]">Select...</option>
-                @for (l of filters()?.linesOfBusiness; track l) {
-                  <option [value]="l">{{l}}</option>
-                }
-              </select>
-              <svg class="absolute right-[8px] top-[8px] w-[12px] h-[16px] pointer-events-none text-neutral-light" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-          </div>
+          <poc-dropdown
+            label="Line of Business"
+            [options]="toOptions(filters()?.linesOfBusiness)"
+            [value]="state().lineOfBusiness"
+            (valueChange)="onDropdownChange('lineOfBusiness', $event)"
+            placeholder="Select..."
+            width="300px"
+          ></poc-dropdown>
 
           <div class="advance-filter-field">
-            <label class="block font-['Open_Sans'] font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Client Name (Pipe "|" separated)</label>
+            <label class="block font-opensans font-semibold text-[14px] leading-[20px] text-neutral-light h-[30px] flex items-center">Client Name (Pipe "|" separated)</label>
             <textarea [(ngModel)]="state().clientNames" rows="3" placeholder="Enter pipe separated Client Name for advance filter."
-            class="w-[440px] h-[64px] border border-[#B4BABF] rounded-[4px] px-[8px] py-[8px] text-[14px] font-['Open_Sans'] text-neutral-light placeholder-[#B4BABF] focus:outline-none focus:ring-1 focus:ring-primary resize-none"></textarea>
+            class="w-[440px] h-[64px] border border-border-input rounded-[4px] px-sp-2 py-sp-2 text-[14px] font-opensans text-neutral-light placeholder-text-placeholder focus:outline-none focus:ring-1 focus:ring-primary resize-none"></textarea>
           </div>
         </div>
       </div>
 
-      <div class="h-[80px] px-[24px] pt-[24px] pb-[24px] bg-white border-[#EDEBE9]">
-        <div class="flex gap-[16px]">
-          <button (click)="apply.emit()" class="h-[32px] px-[16px] bg-primary text-white rounded-[4px] font-['Roboto'] font-semibold text-[14px] leading-[20px] hover:opacity-90 transition-opacity">Apply</button>
-          <button (click)="reset.emit()" class="h-[32px] px-[16px] bg-[#858D94] text-white rounded-[4px] font-['Roboto'] font-semibold text-[14px] leading-[20px] hover:opacity-90 transition-opacity">Reset</button>
+      <div class="h-[80px] px-sp-6 pt-sp-6 pb-sp-6 bg-white border-border-panel">
+        <div class="flex gap-sp-4">
+          <button (click)="apply.emit()" class="h-[32px] px-sp-4 bg-primary text-white rounded-[4px] font-roboto font-semibold text-[14px] leading-[20px] hover:opacity-90 transition-opacity">Apply</button>
+          <button (click)="reset.emit()" class="h-[32px] px-sp-4 bg-btn-secondary text-white rounded-[4px] font-roboto font-semibold text-[14px] leading-[20px] hover:opacity-90 transition-opacity">Reset</button>
         </div>
       </div>
     </div>
+
 </div>

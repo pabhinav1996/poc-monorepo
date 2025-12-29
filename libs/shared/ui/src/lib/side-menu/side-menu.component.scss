@@ -3,19 +3,20 @@
 .menu-item {
   .menu-item-text {
     font-weight: 400;
-    color: #323130;
+    color: var(--color-text-primary);
   }
 
   &.active {
-    background-color: #e8f4ef;
+    background-color: var(--color-bg-sidebar-active);
     border-radius: 4px 0 0 4px;
     margin-left: 8px;
     width: calc(100% - 8px);
 
     .menu-item-text {
       font-weight: 600;
-      color: #4e2683;
+      color: var(--color-primary-purple);
       left: 28px;
     }
   }
 }
+

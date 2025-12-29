@@ -1,18 +1,18 @@
 <div class="h-full flex transition-all duration-300"
   [ngClass]="isCollapsed ? 'w-[77px]' : 'w-[285px]'">
 
-  <div class="w-[77px] h-full bg-[#fafafa] flex flex-col shrink-0">
-    <div class="flex-1 bg-white border-r border-[#d2d0ce] flex flex-col relative">
+  <div class="w-[77px] h-full bg-bg-header flex flex-col shrink-0">
+    <div class="flex-1 bg-white border-r border-border flex flex-col relative">
 
       @if (isCollapsed) {
-        <div class="flex flex-col gap-[24px] items-center absolute left-[5px] top-[24px]">
+        <div class="flex flex-col gap-sp-6 items-center absolute left-[5px] top-sp-6">
           <button (click)="toggleCollapse()"
-            class="w-6 h-6 flex items-center justify-center border border-[#8a8886] rounded bg-white hover:bg-gray-50">
-            <svg class="w-3 h-3 text-[#1a3fd6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            class="w-6 h-6 flex items-center justify-center border border-border-dark rounded bg-white hover:bg-gray-50">
+            <svg class="w-3 h-3 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
             </svg>
           </button>
-          <div class="flex flex-col gap-[4px] items-center px-[2px] py-[3px] rounded-[4px] bg-[#e8f4ef]">
+          <div class="flex flex-col gap-sp-1 items-center px-[2px] py-[3px] rounded-[4px] bg-status-new/10">
             <div class="w-[64.828px] h-[48px] flex items-center justify-center relative">
               <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 36.6667C16.1389 35.6944 12.9514 33.4792 10.4375 30.0208C7.92361 26.5625 6.66667 22.7222 6.66667 18.5V8.33333L20 3.33333L33.3333 8.33333V18.5C33.3333 22.7222 32.0764 26.5625 29.5625 30.0208C27.0486 33.4792 23.8611 35.6944 20 36.6667ZM20 33.1667C22.8889 32.25 25.2778 30.4167 27.1667 27.6667C29.0556 24.9167 30 21.8611 30 18.5V10.625L20 6.875L10 10.625V18.5C10 21.8611 10.9444 24.9167 12.8333 27.6667C14.7222 30.4167 17.1111 32.25 20 33.1667ZM20 28.3333C20 26 20.8056 24.0278 22.4167 22.4167C24.0278 20.8056 26 20 28.3333 20C26 20 24.0278 19.1944 22.4167 17.5833C20.8056 15.9722 20 14 20 11.6667C20 14 19.1944 15.9722 17.5833 17.5833C15.9722 19.1944 14 20 11.6667 20C14 20 15.9722 20.8056 17.5833 22.4167C19.1944 24.0278 20 26 20 28.3333Z" fill="#4E2683"/>
@@ -51,14 +51,14 @@
       }
 
       @if (!isCollapsed) {
-        <div class="flex flex-col gap-[24px] items-center absolute left-[5px] top-[24px]">
-          <div class="flex flex-col gap-[4px] items-center px-[2px] py-[3px] rounded-[4px] bg-[#e8f4ef]">
+        <div class="flex flex-col gap-sp-6 items-center absolute left-[5px] top-sp-6">
+          <div class="flex flex-col gap-sp-1 items-center px-[2px] py-[3px] rounded-[4px] bg-status-new/10">
             <div class="w-[64.828px] h-[48px] flex items-center justify-center relative">
               <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 36.6667C16.1389 35.6944 12.9514 33.4792 10.4375 30.0208C7.92361 26.5625 6.66667 22.7222 6.66667 18.5V8.33333L20 3.33333L33.3333 8.33333V18.5C33.3333 22.7222 32.0764 26.5625 29.5625 30.0208C27.0486 33.4792 23.8611 35.6944 20 36.6667ZM20 33.1667C22.8889 32.25 25.2778 30.4167 27.1667 27.6667C29.0556 24.9167 30 21.8611 30 18.5V10.625L20 6.875L10 10.625V18.5C10 21.8611 10.9444 24.9167 12.8333 27.6667C14.7222 30.4167 17.1111 32.25 20 33.1667ZM20 28.3333C20 26 20.8056 24.0278 22.4167 22.4167C24.0278 20.8056 26 20 28.3333 20C26 20 24.0278 19.1944 22.4167 17.5833C20.8056 15.9722 20 14 20 11.6667C20 14 19.1944 15.9722 17.5833 17.5833C15.9722 19.1944 14 20 11.6667 20C14 20 15.9722 20.8056 17.5833 22.4167C19.1944 24.0278 20 26 20 28.3333Z" fill="#4E2683"/>
               </svg>
             </div>
-            <span class="text-[14px] font-medium text-[#4e2683] leading-[20px] text-center whitespace-nowrap font-roboto">SMART</span>
+            <span class="text-[14px] font-medium text-primary leading-[20px] text-center whitespace-nowrap font-roboto">SMART</span>
           </div>
         </div>
       }
@@ -66,21 +66,21 @@
   </div>
 
   @if (!isCollapsed) {
-    <div class="w-[208px] h-full bg-white border-r border-[#d2d0ce] flex flex-col">
-      <div class="h-[42px] relative shrink-0 w-full flex items-center justify-between px-4">
-        <span class="text-[14px] font-semibold text-[#4e2683] leading-[20px] font-opensans">ML Guardian</span>
+    <div class="w-[208px] h-full bg-white border-r border-border flex flex-col">
+      <div class="h-[42px] relative shrink-0 w-full flex items-center justify-between px-sp-4">
+        <span class="text-[14px] font-semibold text-primary leading-[20px] font-opensans">ML Guardian</span>
         <button (click)="toggleCollapse()"
-          class="w-6 h-6 flex items-center justify-center border border-[#8a8886] rounded bg-white hover:bg-gray-50">
-          <svg class="w-3 h-3 text-[#1a3fd6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          class="w-6 h-6 flex items-center justify-center border border-border-dark rounded bg-white hover:bg-gray-50">
+          <svg class="w-3 h-3 text-accent-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
           </svg>
         </button>
       </div>
       <div class="flex items-center justify-center h-[8px] px-[6px] shrink-0">
-        <div class="h-px w-full bg-[#d2d0ce]"></div>
+        <div class="h-px w-full bg-border"></div>
       </div>
       <div class="h-[42px] relative shrink-0 w-full">
-        <span class="absolute left-[16px] top-1/2 -translate-y-1/2 text-[14px] font-semibold text-[#393d40] leading-[20px] font-opensans">Operations</span>
+        <span class="absolute left-[16px] top-1/2 -translate-y-1/2 text-[14px] font-semibold text-text-primary leading-[20px] font-opensans">Operations</span>
       </div>
       <a routerLink="/"
         class="menu-item h-[42px] relative shrink-0 w-full block"
@@ -95,22 +95,22 @@
         <span class="menu-item-text absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] leading-[20px] font-opensans">Alert Queue</span>
       </a>
       <a class="h-[42px] relative shrink-0 w-full block cursor-pointer">
-        <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-[#323130] leading-[20px] font-opensans">Preferences</span>
+        <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-text-primary leading-[20px] font-opensans">Preferences</span>
       </a>
       <a class="h-[42px] relative shrink-0 w-full block cursor-pointer">
-        <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-[#323130] leading-[20px] font-opensans">Menu - 4</span>
+        <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-text-primary leading-[20px] font-opensans">Menu - 4</span>
       </a>
       <div class="flex items-center justify-center h-[8px] px-[6px] shrink-0">
-        <div class="h-px w-full bg-[#d2d0ce]"></div>
+        <div class="h-px w-full bg-border"></div>
       </div>
       <div class="h-[42px] relative shrink-0 w-full">
-        <span class="absolute left-[16px] top-1/2 -translate-y-1/2 text-[14px] font-semibold text-[#393d40] leading-[20px] font-opensans">Insights</span>
+        <span class="absolute left-[16px] top-1/2 -translate-y-1/2 text-[14px] font-semibold text-text-primary leading-[20px] font-opensans">Insights</span>
       </div>
       <a class="h-[42px] relative shrink-0 w-full block cursor-pointer">
-        <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-[#323130] leading-[20px] font-opensans">Operational Metrics</span>
+        <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-text-primary leading-[20px] font-opensans">Operational Metrics</span>
       </a>
       <a class="h-[42px] relative shrink-0 w-full block cursor-pointer">
-        <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-[#323130] leading-[20px] font-opensans">KPI</span>
+        <span class="absolute left-[36px] top-1/2 -translate-y-1/2 text-[14px] font-normal text-text-primary leading-[20px] font-opensans">KPI</span>
       </a>
     </div>
   }

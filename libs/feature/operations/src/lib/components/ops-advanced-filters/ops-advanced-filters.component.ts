@@ -2,6 +2,7 @@ import { Component, input, model, output, ViewEncapsulation, computed } from '@a
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FilterOptions } from '@poc/shared/util';
+import { DropdownComponent, DropdownOption } from '@poc/shared/ui';
 
 export interface AdvanceFiltersState {
   alertIds: string;
@@ -22,7 +23,7 @@ export interface AdvanceFiltersState {
 @Component({
   selector: 'poc-ops-advanced-filters',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, DropdownComponent],
   templateUrl: './ops-advanced-filters.component.html',
   styleUrl: './ops-advanced-filters.component.scss',
   encapsulation: ViewEncapsulation.None
@@ -37,15 +38,25 @@ export class OpsAdvancedFiltersComponent {
   apply = output<void>();
   reset = output<void>();
 
+  // Helper to convert string arrays to DropdownOption format
+  toOptions(values: string[] | undefined): DropdownOption[] {
+    return values?.map(v => ({ label: v, value: v })) || [];
+  }
+
   dropdownFields = computed(() => {
     const f = this.filters();
     return [
-      { label: 'Priority', key: 'priority' as keyof AdvanceFiltersState, options: f?.priorities || [] },
-      { label: 'Status', key: 'status' as keyof AdvanceFiltersState, options: f?.statuses || [] },
-      { label: 'Jurisdiction', key: 'jurisdiction' as keyof AdvanceFiltersState, options: f?.jurisdictions || [] },
-      { label: 'Risk Rating', key: 'riskRating' as keyof AdvanceFiltersState, options: f?.riskRatings || [] }
+      { label: 'Priority', key: 'priority' as keyof AdvanceFiltersState, options: this.toOptions(f?.priorities) },
+      { label: 'Status', key: 'status' as keyof AdvanceFiltersState, options: this.toOptions(f?.statuses) },
+      { label: 'Jurisdiction', key: 'jurisdiction' as keyof AdvanceFiltersState, options: this.toOptions(f?.jurisdictions) },
+      { label: 'Risk Rating', key: 'riskRating' as keyof AdvanceFiltersState, options: this.toOptions(f?.riskRatings) }
     ];
   });
+
+  // Method to update state field from dropdown selection
+  onDropdownChange(key: keyof AdvanceFiltersState, value: string) {
+    this.state.update(s => ({ ...s, [key]: value }));
+  }
 
   onScoreMinChange(value: number) {
     const currentState = this.state();

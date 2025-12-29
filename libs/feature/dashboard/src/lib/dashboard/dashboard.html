@@ -1,8 +1,8 @@
-<div class="h-full flex flex-col gap-4 overflow-auto">
+<div class="h-full flex flex-col gap-sp-4 overflow-auto">
   
   <div class="flex justify-between items-center">
     <h1 class="font-semibold text-primary font-opensans text-[24px] leading-[32px]">Operations / My Metrics</h1>
-    <button (click)="openGuide()" class="flex items-center gap-[8px] px-[8px] py-[12px] hover:bg-gray-50 rounded transition-colors">
+    <button (click)="openGuide()" class="flex items-center gap-sp-2 px-sp-2 py-sp-3 hover:bg-gray-50 rounded transition-colors">
 
       <svg class="w-4 h-4 shrink-0 text-primary" viewBox="0 0 16 16" fill="none">
         <path d="M1.60781 0C0.734328 0 0.0078125 0.723987 0.0078125 1.59844L0 16L3.2 12.8H14.4C15.2745 12.8 16 12.0745 16 11.2V1.6C16 0.72555 15.2745 0 14.4 0H1.60781ZM1.60781 1.6H14.4V11.2H2.5375L1.60313 12.1344L1.60781 1.6ZM7.2 3.2V4.8H8.8V3.2H7.2ZM7.2 6.4V9.6H8.8V6.4H7.2Z" fill="currentColor"/>
@@ -26,7 +26,7 @@
       </svg>
     </div>
 
-    <p class="absolute text-[28px] font-normal leading-[36px] left-[32px] top-[32px] text-white whitespace-nowrap font-opensans">
+    <p class="absolute text-[28px] font-normal leading-[36px] left-[32px] top-sp-8 text-white whitespace-nowrap font-opensans">
       Lorem ipsum nisl erat
     </p>
 
@@ -38,25 +38,25 @@
   </div>
 
 
-  <div class="flex flex-col gap-1">
+  <div class="flex flex-col gap-sp-1">
     <span class="text-sm text-neutral-light">As Of Date</span>
     <div class="relative">
       <input type="date" value="2025-11-20"
-        class="border border-[#8A8886] rounded px-3 py-1.5 text-sm w-[300px] bg-white">
+        class="border border-border-dark rounded px-3 py-1.5 text-sm w-[300px] bg-white">
     </div>
   </div>
 
 
-  <div class="flex gap-[16px]">
+  <div class="flex gap-sp-4">
     @for (card of processedCards(); track card.id) {
       <poc-stat-card [card]="card" class="flex-1 h-[115px]"></poc-stat-card>
     }
   </div>
 
 
-  <div class="flex gap-4 flex-1 min-h-0">
+  <div class="flex gap-sp-4 flex-1 min-h-0">
 
-    <div class="flex-1 bg-white rounded-lg border border-neutral-border p-4 shadow-[0px_3.2px_7.2px_0px_rgba(0,0,0,0.13),0px_0.6px_1.8px_0px_rgba(0,0,0,0.1)]">
+    <div class="flex-1 bg-white rounded-lg border border-neutral-border p-sp-4 shadow-[0px_3.2px_7.2px_0px_rgba(0,0,0,0.13),0px_0.6px_1.8px_0px_rgba(0,0,0,0.1)]">
       <h3 class="font-semibold text-xl text-primary mb-4 font-opensans">Instructions & Best Practices</h3>
       <div class="text-sm text-neutral-light leading-relaxed">
         Content area for instructions and best practices documentation.
@@ -64,24 +64,24 @@
     </div>
 
 
-    <div class="w-[493px] shrink-0 bg-white rounded-lg border border-neutral-border p-4 flex flex-col shadow-[0px_3.2px_7.2px_0px_rgba(0,0,0,0.13),0px_0.6px_1.8px_0px_rgba(0,0,0,0.1)]">
+    <div class="w-[493px] shrink-0 bg-white rounded-lg border border-neutral-border p-sp-4 flex flex-col shadow-[0px_3.2px_7.2px_0px_rgba(0,0,0,0.13),0px_0.6px_1.8px_0px_rgba(0,0,0,0.1)]">
       <h3 class="font-semibold text-xl text-primary mb-3 font-opensans">Smart Identified Alert</h3>
       <div class="flex-1 overflow-auto">
 
         <table class="w-full text-[12px] table-fixed">
           <thead>
-            <tr class="border-b border-[#dcdee0]">
-              <th class="text-left py-2 text-neutral-dark font-normal pl-4 font-opensans w-[253px]">Alert Id</th>
-              <th class="text-left py-2 text-neutral-dark font-normal font-opensans w-[129px]">Generated On</th>
-              <th class="text-center py-2 text-neutral-dark font-normal font-opensans w-[79px]">Risk Score</th>
+            <tr class="border-b border-border-divider">
+              <th class="text-left py-sp-2 text-neutral-dark font-normal pl-4 font-opensans w-[253px]">Alert Id</th>
+              <th class="text-left py-sp-2 text-neutral-dark font-normal font-opensans w-[129px]">Generated On</th>
+              <th class="text-center py-sp-2 text-neutral-dark font-normal font-opensans w-[79px]">Risk Score</th>
             </tr>
           </thead>
           <tbody>
             @for (alert of smartAlerts(); track alert) {
-              <tr class="border-b border-[#E1DFDD] hover:bg-gray-50">
-                <td class="py-2 text-primary font-semibold pl-4 cursor-pointer hover:underline font-opensans">{{ alert.alertId }}</td>
-                <td class="py-2 text-[#17181a] font-opensans">{{ alert.generatedOn }}</td>
-                <td class="py-2 text-center">
+              <tr class="border-b border-border-divider hover:bg-gray-50">
+                <td class="py-sp-2 text-primary font-semibold pl-4 cursor-pointer hover:underline font-opensans">{{ alert.alertId }}</td>
+                <td class="py-sp-2 text-text-filled font-opensans">{{ alert.generatedOn }}</td>
+                <td class="py-sp-2 text-center">
                   <span class="text-danger font-semibold font-opensans">{{ alert.riskScore }}</span>
                 </td>
               </tr>

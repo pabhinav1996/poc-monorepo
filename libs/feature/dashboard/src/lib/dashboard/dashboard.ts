@@ -54,8 +54,8 @@ export class DashboardComponent implements OnInit {
 
   private getCardValueClass(title: string): string {
     if (title === 'Escalated') {
-      return 'text-[#a6212a]';
+      return 'text-accent-red';
     }
-    return 'text-[#4e2683]';
+    return 'text-primary';
   }
 }

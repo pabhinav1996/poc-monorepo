@@ -12,6 +12,7 @@
 :root {
   /* Primary Colors */
   --color-primary-purple: #4e2683;
+  --color-primary-hover: #3B2E58;
   --color-theme-primary: #1A3FD6;
   --color-red-accent: #a6212a;
   
@@ -20,29 +21,42 @@
   --color-text-secondary: #605E5C;
   --color-text-tertiary: #3B3A39;
   --color-text-disabled: #A19F9D;
+  --color-text-label: #5C6166;
+  --color-text-placeholder: #B4BABF;
+  --color-text-filled: #17181A;
   
   /* Background & Borders */
   --color-white: #FFFFFF;
   --color-border: #D2D0CE;
-  --color-border-input: #8A8886;
+  --color-border-input: #B4BABF;
+  --color-border-dark: #8A8886;
   --color-divider: #E1DFDD;
   --color-bg-light: #FAF9F8;
+  --color-bg-header: #FAFAFA;
+  --color-bg-row-even: #F7F5FF;
+  --color-bg-sidebar-active: #e8f4ef;
   
   /* Status Colors */
   --color-status-new: #107C10;
   --color-status-in-progress: #FFB900;
   --color-status-escalated: #D83B01;
   --color-status-closed: #8A8886;
+  --color-status-badge: #6F66CC;
   
   /* Risk Rating Colors */
-  --color-risk-low: #107C10;
-  --color-risk-medium: #FFB900;
-  --color-risk-high: #D13438;
+  --color-risk-low: #60AD25;
+  --color-risk-medium: #E68217;
+  --color-risk-high: #CC333D;
   
   /* Priority Colors */
   --color-priority-p1: #D13438;
   --color-priority-p2: #FFB900;
   --color-priority-p3: #107C10;
+  
+  /* Accent Colors */
+  --color-accent-teal: #26A0BE;
+  --color-accent-purple: #37317A;
+  --color-accent-blue: #1A3FD6;
   
   /* Shadows */
   --shadow-depth-8: 0px 0.6px 1.8px rgba(0,0,0,0.1), 0px 3.2px 7.2px rgba(0,0,0,0.13);
@@ -51,6 +65,33 @@
   /* Font Families */
   --font-heading: 'Open Sans', sans-serif;
   --font-body: 'Roboto', sans-serif;
+
+  /* Spacing Scale */
+  --spacing-0: 0px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  
+  /* Component-Specific Sizing */
+  --size-input-height: 32px;
+  --size-button-height: 28px;
+  --size-icon-sm: 16px;
+  --size-icon-md: 20px;
+  --size-icon-lg: 24px;
+  --size-avatar: 32px;
+  --size-topbar-height: 50px;
+  
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
 
   /* AG Grid Global Overrides (Confirmed Working Strategy) */
   --ag-pinned-column-border: none;

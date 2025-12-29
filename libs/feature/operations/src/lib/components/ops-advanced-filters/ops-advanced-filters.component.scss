@@ -1,12 +1,7 @@
 
 
-
-$color-primary-purple: #4e2683;
-$color-secondary-gray: #858d94;
-
-
 .advance-filters-panel {
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-heading);
 }
 
 .advance-filter-field {
@@ -20,8 +15,8 @@ $color-secondary-gray: #858d94;
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: $color-primary-purple;
-    border: 2px solid #ffffff;
+    background-color: var(--color-primary-purple);
+    border: 2px solid var(--color-white);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     cursor: grab;
     transition: transform 0.15s ease;
@@ -39,8 +34,8 @@ $color-secondary-gray: #858d94;
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background-color: $color-primary-purple;
-    border: 2px solid #ffffff;
+    background-color: var(--color-primary-purple);
+    border: 2px solid var(--color-white);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     cursor: grab;
     transition: transform 0.15s ease;
@@ -99,30 +94,30 @@ $color-secondary-gray: #858d94;
 
 
 .advance-filter-select {
-  color: #605e5c;
-  font-family: 'Open Sans', sans-serif;
+  color: var(--color-text-secondary);
+  font-family: var(--font-heading);
   font-weight: 400;
   border-width: 1px 1px 2px 1px !important;
 
 
   &:has(option:first-child:checked) {
-    color: #b4babf;
+    color: var(--color-text-disabled);
   }
 
   option {
-    color: #605e5c;
+    color: var(--color-text-secondary);
     font-weight: 400;
   }
 
   option[value=''] {
-    color: #b4babf;
+    color: var(--color-text-disabled);
   }
 }
 
 
 select.advance-filter-select option:disabled,
 select.advance-filter-select option[value=''] {
-  color: #b4babf;
+  color: var(--color-text-disabled);
 }
 
 
@@ -135,17 +130,17 @@ select.advance-filter-select option[value=''] {
 
 
   input[type='date'] {
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--font-heading);
     font-weight: 400;
     border-width: 1px 1px 2px 1px !important;
     width: 200px;
 
     &::-webkit-datetime-edit-fields-wrapper {
-      color: #605e5c;
+      color: var(--color-text-secondary);
     }
 
     &::-webkit-datetime-edit-text {
-      color: #605e5c;
+      color: var(--color-text-secondary);
     }
 
     &::-webkit-calendar-picker-indicator {
@@ -162,7 +157,7 @@ select.advance-filter-select option[value=''] {
 
     &:not(:valid),
     &[value=''] {
-      color: #b4babf;
+      color: var(--color-text-disabled);
     }
   }
 }

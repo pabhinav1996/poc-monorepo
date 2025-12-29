@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { GridStore } from '@poc/shared/data-access';
-import { GuideDrawerComponent } from '@poc/shared/ui';
+import { GuideDrawerComponent, DropdownComponent, DropdownOption } from '@poc/shared/ui';
 
 interface Entity {
   name: string;
@@ -14,11 +14,26 @@ interface Entity {
 @Component({
   selector: 'poc-details',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, GuideDrawerComponent],
+  imports: [CommonModule, RouterModule, FormsModule, GuideDrawerComponent, DropdownComponent],
   templateUrl: './details.html',
   styleUrl: './details.scss',
 })
 export class DetailsComponent {
+  // Static dropdown options
+  mainEntityParentOptions: DropdownOption[] = [
+    { label: 'Main Party - 1', value: 'Main Party - 1' },
+    { label: 'Main Party - 2', value: 'Main Party - 2' }
+  ];
+  
+  identityTypeOptions: DropdownOption[] = [
+    { label: 'LEI', value: 'LEI' },
+    { label: 'FENERGO', value: 'FENERGO' },
+    { label: 'CRDS', value: 'CRDS' },
+    { label: 'RMPM', value: 'RMPM' },
+    { label: 'New', value: 'New' }
+  ];
+  
+  selectedMainEntityParent = 'Main Party - 1';
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   gridStore = inject(GridStore);

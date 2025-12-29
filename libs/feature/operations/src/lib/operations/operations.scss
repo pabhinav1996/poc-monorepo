@@ -2,27 +2,11 @@
 @import 'ag-grid-community/styles/ag-theme-quartz.css';
 
 
-$color-primary-purple: #4E2683;
-$color-secondary-gray: #858D94;
-$color-label-text: #5C6166;
-$color-input-border: #B4BABF;
-$color-header-border: #8A8886;
-$color-header-bg: #FAFAFA;
-$color-row-even: #F7F5FF;
-$color-row-odd: #FFFFFF;
-$color-text-primary: #323130;
-$color-text-cell: #37317A;
-
-$grid-header-height: 43px;
-$grid-row-height: 32px;
-$checkbox-size: 20px;
-$checkbox-border-radius: 2px;
 
 :host {
   display: block;
   height: 100%;
 }
-
 
 .ag-theme-quartz {
 
@@ -43,13 +27,13 @@ $checkbox-border-radius: 2px;
   --ag-secondary-border-color: transparent;
   
 
-  --ag-header-background-color: #{$color-header-bg};
-  --ag-header-foreground-color: #{$color-text-primary};
-  --ag-header-height: #{$grid-header-height};
+  --ag-header-background-color: #FAFAFA;
+  --ag-header-foreground-color: #323130;
+  --ag-header-height: 43px;
   
-
-  --ag-row-height: #{$grid-row-height};
-  --ag-odd-row-background-color: #{$color-row-odd};
+  
+  --ag-row-height: 32px;
+  --ag-odd-row-background-color: #FFFFFF;
   
 
   --ag-font-family: 'Open Sans', sans-serif;
@@ -60,17 +44,13 @@ $checkbox-border-radius: 2px;
   --ag-row-hover-color: rgba(78, 38, 131, 0.04);
   
 
-  --ag-checkbox-checked-color: #{$color-primary-purple};
+  --ag-checkbox-checked-color: #4E2683;
   --ag-checkbox-unchecked-color: transparent;
   --ag-checkbox-background-color: transparent;
-  --ag-checkbox-border-color: #{$color-secondary-gray};
-
+  --ag-checkbox-border-color: #858D94;
   --ag-checkbox-border-width: 1px;
   --ag-checkbox-border-radius: 2px;
 }
-
-
-
 
 :host ::ng-deep {
   .ag-theme-quartz .ag-row,
@@ -82,8 +62,5 @@ $checkbox-border-radius: 2px;
   --ag-header-background-color: #FAFAFA !important;
   .ag-header {
     background-color: #FAFAFA;
+  }
 }
-}
-
-
-
