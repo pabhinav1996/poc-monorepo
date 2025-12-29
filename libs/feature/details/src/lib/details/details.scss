@@ -105,7 +105,7 @@ $font-roboto: 'Roboto', sans-serif;
     background-color: rgba(78, 38, 131, 0.08);
   }
   
-  img {
+  img, svg {
     width: 32px;
     height: 32px;
   }
@@ -234,7 +234,7 @@ $font-roboto: 'Roboto', sans-serif;
   width: 40px;
   height: 20px;
   
-  img {
+  img, svg {
     display: block;
   }
 }
@@ -655,7 +655,7 @@ $font-roboto: 'Roboto', sans-serif;
 .panel-icon {
   margin-bottom: 16px;
   
-  img {
+  img, svg {
     width: 80px;
     height: 80px;
   }
